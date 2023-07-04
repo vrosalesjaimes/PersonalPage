@@ -20,9 +20,6 @@ public class Rol {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private RolApplication rol;
+    private RolApplication name;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Rol.class, cascade = CascadeType.PERSIST)
-    @JoinTable(name="user_rol", joinColumns = @JoinColumn(name =  "user_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
-    private Set<Rol> roles;
 }
