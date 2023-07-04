@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.vrj</groupId>
-	<artifactId>Personal-Page</artifactId>
+	<artifactId>mysite</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Personal-Page</name>
-	<description>Personal page to share my academic and professional experiences.  Topics</description>
+	<name>mysite</name>
+	<description>Personal page to share my academic and professional experiences.</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

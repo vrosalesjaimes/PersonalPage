@@ -1,10 +1,10 @@
-package com.vrj.Personal.Page;
+package com.vrj.mysite;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PersonalPageApplicationTests {
+class MysiteApplicationTests {
 
 	@Test
 	void contextLoads() {

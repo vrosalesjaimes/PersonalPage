@@ -1,8 +1,3 @@
-# Read Me First
-The following was discovered as part of building this project:
-
-* The original package name 'com.vrj.Personal Page' is invalid and this project uses 'com.vrj.Personal.Page' instead.
-
 # Getting Started
 
 ### Reference Documentation

@@ -1,13 +1,13 @@
-package com.vrj.Personal.Page;
+package com.vrj.mysite;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PersonalPageApplication {
+public class MysiteApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PersonalPageApplication.class, args);
+		SpringApplication.run(MysiteApplication.class, args);
 	}
 
 }
