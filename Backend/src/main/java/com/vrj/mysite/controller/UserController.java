@@ -4,7 +4,7 @@ import com.vrj.mysite.dto.CreateUserDTO;
 import com.vrj.mysite.dto.UpdateUserDTO;
 import com.vrj.mysite.exceptions.UserFoundException;
 import com.vrj.mysite.exceptions.UserNotFoundException;
-import com.vrj.mysite.model.User;
+import com.vrj.mysite.model.UserEntity;
 import com.vrj.mysite.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +20,12 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/create-user")
-    public ResponseEntity<User> createUser(@RequestBody CreateUserDTO createUserDTO) throws UserFoundException {
+    public ResponseEntity<UserEntity> createUser(@RequestBody CreateUserDTO createUserDTO) throws UserFoundException {
         return userService.createUser(createUserDTO);
     }
 
     @PostMapping("/update-user")
-    public ResponseEntity<User> updateUser(@RequestBody UpdateUserDTO updateUserDTO) throws UserNotFoundException{
+    public ResponseEntity<UserEntity> updateUser(@RequestBody UpdateUserDTO updateUserDTO) throws UserNotFoundException{
         return userService.updateUser(updateUserDTO);
     }
 
