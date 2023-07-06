@@ -22,4 +22,8 @@ public class Tag {
 
     @NotBlank
     private String description;
+
+    @OneToOne
+    @JoinColumn(name = "idiom_id")
+    private Idiom idiom;
 }

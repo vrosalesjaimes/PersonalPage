@@ -29,6 +29,8 @@ public class Certification {
     @DateTimeFormat(pattern = "yyyy")
     private Date date;
 
+    @OneToOne
+    @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 
 }

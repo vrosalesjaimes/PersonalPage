@@ -21,6 +21,8 @@ public class About {
     @NotNull
     private String content;
 
+    @OneToOne
+    @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 
     private Set<Image> images;

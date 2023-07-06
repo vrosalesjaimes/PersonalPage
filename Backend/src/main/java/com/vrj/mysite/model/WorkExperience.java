@@ -35,6 +35,8 @@ public class WorkExperience {
     @NotBlank
     private String activities;
 
+    @OneToOne
+    @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 
 }

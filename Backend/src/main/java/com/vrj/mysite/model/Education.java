@@ -35,6 +35,8 @@ public class Education {
     @DateTimeFormat(pattern = "yyyy")
     private Date finalDate;
 
+    @OneToOne
+    @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 
 }
