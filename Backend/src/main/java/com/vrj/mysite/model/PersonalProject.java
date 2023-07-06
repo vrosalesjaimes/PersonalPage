@@ -53,4 +53,8 @@ public class PersonalProject {
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = CascadeType.PERSIST)
     @JoinTable(name="personal_project_tag", joinColumns = @JoinColumn(name =  "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags;
+
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Author.class, cascade = CascadeType.PERSIST)
+    @JoinTable(name="personal_project_author", joinColumns = @JoinColumn(name =  "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
+    private Set<Author> authors;
 }
