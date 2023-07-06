@@ -48,6 +48,8 @@ public class ScholarProject {
 
     private Set<Image> images;
 
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Reference.class, cascade = CascadeType.PERSIST)
+    @JoinTable(name="scholar_project_reference", joinColumns = @JoinColumn(name =  "scholar_project_id"), inverseJoinColumns = @JoinColumn(name = "reference_id"))
     private Set<Reference> references;
 
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = CascadeType.PERSIST)
