@@ -20,4 +20,8 @@ public class Idiom {
     @NotBlank
     private String idiom;
 
+    @OneToOne
+    @JoinColumn(name = "image_id")
+    private Image image;
+
 }
