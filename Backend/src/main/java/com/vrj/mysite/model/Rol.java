@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name="rol")
+@Table(name="rol", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Rol {
 
     @Id
@@ -21,5 +23,6 @@ public class Rol {
 
     @Enumerated(EnumType.STRING)
     private RolApplication name;
+    
 
 }

@@ -7,6 +7,7 @@ import com.vrj.mysite.exceptions.UserNotFoundException;
 import com.vrj.mysite.model.Rol;
 import com.vrj.mysite.model.RolApplication;
 import com.vrj.mysite.model.UserEntity;
+import com.vrj.mysite.repositories.RolRepository;
 import com.vrj.mysite.repositories.UserRepository;
 import com.vrj.mysite.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -27,6 +29,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RolRepository rolRepository;
+
     @Override
     public ResponseEntity<UserEntity> createUser(CreateUserDTO createUserDTO) throws UserFoundException {
 
@@ -34,22 +39,31 @@ public class UserServiceImpl implements UserService {
             throw new UserFoundException();
         }
 
-        Set<Rol> rols = createUserDTO.getRols().stream()
-                .map(role -> Rol.builder()
-                        .name(RolApplication.valueOf(role))
-                        .build())
-                .collect(Collectors.toSet());
+        Set<Rol> roles = new HashSet<Rol>();
+
+        for(String role: createUserDTO.getRols()){
+            RolApplication roleName = RolApplication.valueOf(role);
+            Rol localRol = rolRepository.findByName(roleName);
+
+            if(localRol != null)
+                roles.add(localRol);
+            else{
+                Rol newRole = Rol.builder().name(roleName).build();
+                rolRepository.save(newRole);
+                roles.add(newRole);
+            }
+        }
 
         UserEntity userEntity = UserEntity.builder()
                 .username(createUserDTO.getUsername())
                 .password(passwordEncoder.encode(createUserDTO.getPassword()))
                 .email(createUserDTO.getEmail())
-                .rols(rols)
+                .roles(roles)
                 .build();
 
-        userRepository.save(userEntity);
+        UserEntity user = userRepository.save(userEntity);
 
-        return ResponseEntity.ok(userEntity);
+        return ResponseEntity.ok(user);
     }
 
     @Override

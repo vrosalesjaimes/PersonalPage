@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name="users")
+@Table(name="users", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 public class UserEntity {
 
     @Id
@@ -40,5 +40,5 @@ public class UserEntity {
 
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Rol.class, cascade = CascadeType.PERSIST)
     @JoinTable(name="user_rol", joinColumns = @JoinColumn(name =  "user_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
-    private Set<Rol> rols;
+    private Set<Rol> roles;
 }

@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity userEntity = userRepository.findByUsername(username);
 
-        Collection<? extends GrantedAuthority> authorities = userEntity.getRols()
+        Collection<? extends GrantedAuthority> authorities = userEntity.getRoles()
                 .stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_".concat(role.getName().name())))
                 .collect(Collectors.toSet());
