@@ -46,6 +46,8 @@ public class ScholarProject {
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Image.class, cascade = CascadeType.PERSIST)
+    @JoinTable(name="scholar_project_image", joinColumns = @JoinColumn(name =  "scholar_project_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
     private Set<Image> images;
 
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Reference.class, cascade = CascadeType.PERSIST)
