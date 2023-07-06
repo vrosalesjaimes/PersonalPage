@@ -23,6 +23,6 @@ public class Rol {
 
     @Enumerated(EnumType.STRING)
     private RolApplication name;
-    
+
 
 }
