@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Data
@@ -32,5 +33,9 @@ public class Certification {
     @OneToOne
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
+
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = CascadeType.PERSIST)
+    @JoinTable(name="certification_tag", joinColumns = @JoinColumn(name =  "certification_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private Set<Tag> tags;
 
 }

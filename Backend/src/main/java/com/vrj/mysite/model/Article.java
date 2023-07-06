@@ -48,4 +48,8 @@ public class Article {
     private Set<Image> images;
 
     private Set<Reference> references;
+
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = CascadeType.PERSIST)
+    @JoinTable(name="article_tag", joinColumns = @JoinColumn(name =  "article_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private Set<Tag> tags;
 }

@@ -49,4 +49,8 @@ public class PersonalProject {
     private Set<Image> images;
 
     private Set<Reference> references;
+
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = CascadeType.PERSIST)
+    @JoinTable(name="personal_project_tag", joinColumns = @JoinColumn(name =  "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private Set<Tag> tags;
 }
