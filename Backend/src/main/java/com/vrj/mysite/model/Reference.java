@@ -14,12 +14,15 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "reference")
+@Table(name = "reference", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Reference {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
+    private String name;
 
     /* The type of reference for example: book, magazine, article, etc. */
     @NotBlank

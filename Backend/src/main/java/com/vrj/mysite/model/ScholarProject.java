@@ -15,7 +15,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "scholar_project")
+@Table(name = "scholar_project", uniqueConstraints = @UniqueConstraint(columnNames = "title"))
 public class ScholarProject {
 
     @Id

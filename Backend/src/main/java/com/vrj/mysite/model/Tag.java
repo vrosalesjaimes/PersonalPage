@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tag")
+@Table(name = "tag", uniqueConstraints = @UniqueConstraint(columnNames = "title"))
 public class Tag {
 
     @Id

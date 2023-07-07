@@ -15,7 +15,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "post")
+@Table(name = "post", uniqueConstraints = @UniqueConstraint(columnNames = "title"))
 public class Post {
 
     @Id
