@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface AboutService {
 
-    public ResponseEntity<About> createAbout(About about);
+    public ResponseEntity<About> createAbout(About about) throws Exception;
     public ResponseEntity<About> updateAbout(Long id, About about);
     public void deleteAbout(Long id);
 }
