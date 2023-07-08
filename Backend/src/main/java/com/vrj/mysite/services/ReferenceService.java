@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface ReferenceService {
 
-    public ResponseEntity<?> createReference(Reference reference) throws ReferenceFoundException;
+    public ResponseEntity<Reference> createReference(Reference reference) throws ReferenceFoundException;
     public ResponseEntity<String> updateReference(Long id, Reference reference) throws ReferenceNotFoundException;
     public void deleteReference(Long id);
 }

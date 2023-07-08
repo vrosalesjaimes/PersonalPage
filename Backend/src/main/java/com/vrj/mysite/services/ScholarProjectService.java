@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface ScholarProjectService {
 
-    public ResponseEntity<?> creteScholarProject(ScholarProject scholarProject) throws ScholarProjectFoundException;
+    public ResponseEntity<ScholarProject> creteScholarProject(ScholarProject scholarProject) throws ScholarProjectFoundException;
     public ResponseEntity<String> updateScholarProject(Long id, ScholarProject scholarProject) throws ScholarProjectNotFoundException;
     public void deleteScholarProject(Long id);
 }

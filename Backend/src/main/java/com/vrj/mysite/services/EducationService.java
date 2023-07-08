@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface EducationService {
 
-    public ResponseEntity<?> createEducation(Education education) throws EducationFoundException;
+    public ResponseEntity<Education> createEducation(Education education) throws EducationFoundException;
     public ResponseEntity<String> updateEducation(Long id, Education education) throws EducationNotFoundException;
     public void deleteEducation(Long id);
 

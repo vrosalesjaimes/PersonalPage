@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface TagService {
 
-    public ResponseEntity<?> createTag(Tag tag) throws TagFoundException;
+    public ResponseEntity<Tag> createTag(Tag tag) throws TagFoundException;
     public ResponseEntity<String> updateTag(Long id, Tag tag) throws TagNotFoundException;
     public void deleteTag(Long id);
 }

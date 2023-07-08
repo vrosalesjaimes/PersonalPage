@@ -1,5 +1,7 @@
 package com.vrj.mysite.services.impl;
 
+import com.vrj.mysite.exceptions.ImageFoundException;
+import com.vrj.mysite.exceptions.ImageNotFoundException;
 import com.vrj.mysite.model.Image;
 import com.vrj.mysite.repositories.ImageRepository;
 import com.vrj.mysite.services.ImageService;
@@ -16,11 +18,11 @@ public class ImageServiceImpl implements ImageService {
     private ImageRepository imageRepository;
 
     @Override
-    public ResponseEntity<?> createImage(Image image) {
+    public ResponseEntity<Image> createImage(Image image) throws ImageFoundException {
         Optional<Image> localImage = imageRepository.findByUrl(image.getUrl());
 
         if(localImage.isPresent())
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("The image name has already been used.");
+            throw new ImageFoundException();
 
         Image savedImage = imageRepository.save(image);
 
@@ -28,11 +30,11 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public ResponseEntity<String> updateImage(Long id, Image image) {
+    public ResponseEntity<String> updateImage(Long id, Image image) throws ImageNotFoundException{
         Optional<Image> localImage = imageRepository.findById(id);
 
         if(localImage.isEmpty())
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The image no found.");
+            throw new ImageNotFoundException();
 
         Image updatedImage = localImage.get().upload(image);
         imageRepository.save(updatedImage);
