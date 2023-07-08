@@ -34,7 +34,7 @@ public class Certification {
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinTable(name="certification_tag", joinColumns = @JoinColumn(name =  "certification_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags;
 

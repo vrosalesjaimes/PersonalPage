@@ -20,7 +20,7 @@ public class Idiom {
     @NotBlank
     private String idiom;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "image_id")
     private Image image;
 

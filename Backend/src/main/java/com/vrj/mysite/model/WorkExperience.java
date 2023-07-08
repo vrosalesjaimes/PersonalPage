@@ -35,7 +35,7 @@ public class WorkExperience {
     @NotBlank
     private String activities;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 

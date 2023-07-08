@@ -23,7 +23,7 @@ public class Tag {
     @NotBlank
     private String description;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 }

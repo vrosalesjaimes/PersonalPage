@@ -43,7 +43,7 @@ public class Reference {
     /* Edition of recurse */
     private int edition;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Author.class, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Author.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinTable(name="author_reference", joinColumns = @JoinColumn(name =  "reference_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors;
 

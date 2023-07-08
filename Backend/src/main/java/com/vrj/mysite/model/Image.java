@@ -21,4 +21,9 @@ public class Image {
     @URL
     @NotBlank
     private String url;
+
+    public Image upload(Image image){
+        this.url = image.getUrl();
+        return this;
+    }
 }

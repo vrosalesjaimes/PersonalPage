@@ -41,7 +41,7 @@ public class Post {
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Image.class, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Image.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinTable(name="post_image", joinColumns = @JoinColumn(name =  "post_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
     private Set<Image> images;
 
