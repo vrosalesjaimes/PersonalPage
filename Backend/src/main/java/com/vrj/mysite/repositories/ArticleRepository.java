@@ -9,8 +9,9 @@ import java.util.Set;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-
     public Set<Article> findAllByIdiom(Idiom idiom);
-
-    public Optional<Article> findByTitle(String title);
+    public Optional<Article> findByTitle(String title, Long idiomId);
+    public Set<Article> findAllByTitleContainingIgnoreCaseAndIdiom_Id(String title, Long idiomId);
+    public Set<Article> findAllByAuthors_NameContainingIgnoreCaseAndIdiom_Id(String authorName, Long idiomId);
+    public Set<Article> findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(String tagName, Long idiomId);
 }
