@@ -12,6 +12,6 @@ public interface WorkExperienceRepository extends JpaRepository<WorkExperience, 
 
     public Set<WorkExperience> findAllByIdiom(Idiom idiom);
 
-    public Optional<WorkExperience> findByTitle(String title);
+    public Optional<WorkExperience> findByTitleAndIdiom_id(String title, Long idiom_id);
     public Set<WorkExperience> findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(String tagName, Long idiomId);
 }

@@ -10,7 +10,7 @@ import java.util.Set;
 
 public interface ScholarProjectRepository extends JpaRepository<ScholarProject, Long> {
 
-    public Optional<ScholarProject> findByTitle(String title);
+    public Optional<ScholarProject> findByTitleAndIdiom_id(String title, Long idiom_id);
     public Set<ScholarProject> findAllByIdiom(Idiom idiom);
     public Set<ScholarProject> findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(String tagName, Long idiomId);
     public Set<ScholarProject> findAllByTitleContainingIgnoreCaseAndIdiom_Id(String title, Long idiomId);
