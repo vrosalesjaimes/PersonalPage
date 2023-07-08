@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface CertificationService {
 
-    public ResponseEntity<Certification> createCertification(Certification certification) throws CertificationFoundException;
-    public ResponseEntity<Certification> updateCertification(Long id, Certification certification) throws CertificationNotFoundException;
+    public ResponseEntity<?> createCertification(Certification certification) throws CertificationFoundException;
+    public ResponseEntity<String> updateCertification(Long id, Certification certification) throws CertificationNotFoundException;
     public void delete(Long id);
 }

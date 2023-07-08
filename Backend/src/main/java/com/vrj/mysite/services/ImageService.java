@@ -5,8 +5,8 @@ import org.springframework.http.ResponseEntity;
 
 public interface ImageService {
 
-    public ResponseEntity<Image> createImage(Image image);
-    public ResponseEntity<Image> updateImage(Long id, Image image);
+    public ResponseEntity<?> createImage(Image image);
+    public ResponseEntity<String> updateImage(Long id, Image image);
     public void deleteImage(Long id);
 
 }
