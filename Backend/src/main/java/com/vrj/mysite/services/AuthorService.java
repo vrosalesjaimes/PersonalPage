@@ -9,5 +9,5 @@ public interface AuthorService {
 
     public ResponseEntity<Author> createAuthor(Author author) throws AuthorFoundException;
     public ResponseEntity<String> updateAuthor(Long id, Author author) throws AuthorNotFoundException;
-    public void delete(Long id);
+    public ResponseEntity<String> delete(Long id);
 }
