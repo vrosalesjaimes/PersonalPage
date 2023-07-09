@@ -9,5 +9,5 @@ public interface IdiomService {
 
     public ResponseEntity<Idiom> createIdiom(Idiom idiom) throws IdiomFoundException;
     public ResponseEntity<String> updateIdiom(Long id, Idiom idiom) throws IdiomNotFoundException;
-    public void deleteIdiom(Long id);
+    public ResponseEntity<?> deleteIdiom(Long id);
 }
