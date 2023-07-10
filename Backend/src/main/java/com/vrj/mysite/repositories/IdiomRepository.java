@@ -10,6 +10,6 @@ public interface IdiomRepository extends JpaRepository<Idiom, Long> {
 
     public List<Idiom> findAll();
 
-    public Optional<Idiom> findByIdiom(String idiom);
+    public Optional<Idiom> findByName(String idiom);
 
 }

@@ -28,7 +28,7 @@ public class IdiomServiceImpl implements IdiomService {
 
     @Override
     public ResponseEntity<Idiom> createIdiom(Idiom idiom) throws IdiomFoundException {
-        Optional<Idiom> localIdiom = this.idiomRepository.findByIdiom(idiom.getIdiom());
+        Optional<Idiom> localIdiom = this.idiomRepository.findByName(idiom.getName());
         Image image;
 
         if (localIdiom.isPresent())
@@ -79,8 +79,8 @@ public class IdiomServiceImpl implements IdiomService {
                 System.out.println("The idiom image already exists.");
             }
         }
-        if(idiom.getIdiom() != null){
-            localIdiom.setIdiom(idiom.getIdiom());
+        if(idiom.getName() != null){
+            localIdiom.setName(idiom.getName());
         }
 
         idiomRepository.save(localIdiom);

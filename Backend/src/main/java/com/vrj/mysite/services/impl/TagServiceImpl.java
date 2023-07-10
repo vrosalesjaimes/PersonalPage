@@ -29,7 +29,7 @@ public class TagServiceImpl implements TagService {
         if(localTag.isPresent())
             throw new TagFoundException();
 
-        Optional<Idiom> localIdiom = idiomRepository.findByIdiom(tag.getIdiom().getIdiom());
+        Optional<Idiom> localIdiom = idiomRepository.findByName(tag.getIdiom().getName());
         Idiom idiom;
         if (localIdiom.isPresent())
             idiom = localIdiom.get();

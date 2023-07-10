@@ -40,7 +40,7 @@ public class EducationServiceImpl implements EducationService {
         else
             education.setImage(this.imageRepository.save(education.getImage()));
 
-        Optional<Idiom> idiom = this.idiomRepository.findByIdiom(education.getIdiom().getIdiom());
+        Optional<Idiom> idiom = this.idiomRepository.findByName(education.getIdiom().getName());
         if (idiom.isPresent())
             education.setIdiom(education.getIdiom());
         else
