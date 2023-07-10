@@ -9,5 +9,5 @@ public interface TagService {
 
     public ResponseEntity<Tag> createTag(Tag tag) throws TagFoundException;
     public ResponseEntity<String> updateTag(Long id, Tag tag) throws TagNotFoundException;
-    public void deleteTag(Long id);
+    public ResponseEntity<String> deleteTag(Long id);
 }

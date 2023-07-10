@@ -23,7 +23,17 @@ public class Tag {
     @NotBlank
     private String description;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToOne(cascade = {CascadeType.ALL, CascadeType.REMOVE})
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
+
+    public Tag update(Tag tag){
+
+        if(tag.getName() != null)
+            this.name = tag.getName();
+        if(tag.getDescription() != null)
+            this.description = tag.getDescription();
+
+        return this;
+    }
 }
