@@ -38,7 +38,7 @@ public class UserEntity {
     private String phone;
     private String photo;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Rol.class, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Rol.class, cascade = CascadeType.MERGE)
     @JoinTable(name="user_rol", joinColumns = @JoinColumn(name =  "user_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles;
 }

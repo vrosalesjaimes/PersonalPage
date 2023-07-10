@@ -40,9 +40,9 @@ public class EducationServiceImpl implements EducationService {
         else
             education.setImage(this.imageRepository.save(education.getImage()));
 
-        Optional<Idiom> idiom = this.idiomRepository.findByName(education.getIdiom().getName());
+        Optional<Idiom> idiom = this.idiomRepository.findById(education.getIdiom().getId());
         if (idiom.isPresent())
-            education.setIdiom(education.getIdiom());
+            education.setIdiom(idiom.get());
         else
             education.setIdiom(this.idiomRepository.save(education.getIdiom()));
 
@@ -59,15 +59,16 @@ public class EducationServiceImpl implements EducationService {
             throw new EducationNotFoundException();
 
         Education savedEducation = localEducation.get().update(education);
+        this.educationRepository.save(savedEducation);
 
-        return ResponseEntity.status(HttpStatus.CONFLICT).body("The Education has been successfully updated");
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("The Education has been successfully updated");
     }
 
     @Override
     public ResponseEntity<String> deleteEducation(Long id) {
         if(this.educationRepository.existsById(id)){
             this.educationRepository.deleteById(id);
-            return ResponseEntity.status(HttpStatus.OK).body("Eduaction successfully removed");
+            return ResponseEntity.status(HttpStatus.OK).body("Education successfully removed");
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Education not found");
     }

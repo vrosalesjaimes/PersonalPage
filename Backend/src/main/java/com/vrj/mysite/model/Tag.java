@@ -23,7 +23,7 @@ public class Tag {
     @NotBlank
     private String description;
 
-    @ManyToOne(cascade = {CascadeType.ALL, CascadeType.REMOVE})
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 

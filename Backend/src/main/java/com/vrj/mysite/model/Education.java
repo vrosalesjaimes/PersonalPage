@@ -17,7 +17,7 @@ import java.util.Date;
 public class Education {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -33,7 +33,7 @@ public class Education {
 
     private Date finalDate;
 
-    @OneToOne(cascade = {CascadeType.ALL, CascadeType.REMOVE})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 
