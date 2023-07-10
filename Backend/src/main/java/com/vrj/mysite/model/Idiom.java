@@ -18,7 +18,7 @@ public class Idiom {
     private Long id;
 
     @NotBlank
-    private String idiom;
+    private String name;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "image_id")

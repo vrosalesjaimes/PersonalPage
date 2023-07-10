@@ -29,14 +29,30 @@ public class Education {
     @NotBlank
     private String average;
 
-    @DateTimeFormat(pattern = "yyyy")
     private Date initialDate;
 
-    @DateTimeFormat(pattern = "yyyy")
     private Date finalDate;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne(cascade = {CascadeType.ALL, CascadeType.REMOVE})
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
+
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "image_id")
+    private Image image;
+
+    public Education update(Education education){
+
+        if(education.getTitle() != null)
+            this.title = education.getTitle();
+        if(education.getAverage() != null)
+            this.average = education.getAverage();
+        if(education.getInitialDate() != null)
+            this.initialDate = education.getInitialDate();
+        if(education.getFinalDate() != null)
+            this.finalDate = education.getFinalDate();
+
+        return this;
+    }
 
 }
