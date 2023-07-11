@@ -19,6 +19,10 @@ public class About {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
+    private String name;
+
     @NotBlank
     private String content;
 
@@ -29,5 +33,18 @@ public class About {
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Image.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinTable(name="about_image", joinColumns = @JoinColumn(name =  "about_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
     private Set<Image> images;
+
+    public About update(About about){
+
+        if (about.getContent() != null)
+            this.content = about.getContent();
+
+        return this;
+    }
+
+    public void addImages(Set<Image> addedImages) {
+        this.images.addAll(addedImages);
+    }
+
 
 }

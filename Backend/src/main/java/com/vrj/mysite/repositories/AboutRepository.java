@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface AboutRepository extends JpaRepository<About, Long> {
-
-    public Optional<About> findByIdiom(Idiom idiom);
+    public Optional<About> findByIdiom_id(Long id);
+    public Optional<About> findByName(String name);
 
 }

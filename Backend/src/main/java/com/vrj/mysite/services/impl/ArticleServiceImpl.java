@@ -25,6 +25,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private AuthorService authorService;
     @Autowired
+    private IdiomRepository idiomRepository;
+    @Autowired
     private ImageRepository imageRepository;
     @Autowired
     private ImageService imageService;
@@ -83,6 +85,12 @@ public class ArticleServiceImpl implements ArticleService {
             }
         }
         article.setTags(savedTag);
+
+        Optional<Idiom> idiom = this.idiomRepository.findById(article.getIdiom().getId());
+        if (idiom.isPresent())
+            article.setIdiom(idiom.get());
+        else
+            article.setIdiom(this.idiomRepository.save(article.getIdiom()));
 
         article = this.articleRepository.save(article);
         return ResponseEntity.ok(article);
