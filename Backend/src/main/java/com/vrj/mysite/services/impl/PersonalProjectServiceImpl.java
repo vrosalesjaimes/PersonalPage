@@ -118,7 +118,12 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
 
     @Override
     public ResponseEntity<PersonalProject> getById(Long id) throws PersonalProjectNotFoundException {
-        return ResponseEntity.ok(this.personalProjectRepository.findById(id).get());
+        Optional<PersonalProject> localProject = this.personalProjectRepository.findById(id);
+
+        if(localProject.isEmpty())
+            throw new PersonalProjectNotFoundException();
+
+        return ResponseEntity.ok(localProject.get());
     }
 
     @Override
