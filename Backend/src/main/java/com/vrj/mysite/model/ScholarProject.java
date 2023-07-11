@@ -100,7 +100,6 @@ public class ScholarProject {
         projectDTO.setInitialImage(this.getInitialImage());
         projectDTO.setDate(this.getDate());
         projectDTO.setRepository(this.getRepository());
-        projectDTO.setContent(this.getContent());
         projectDTO.setTags(this.tags);
         return projectDTO;
     }
