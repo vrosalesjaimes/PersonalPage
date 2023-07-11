@@ -108,7 +108,6 @@ public class Article {
         articleDTO.setInitialImage(this.initialImage);
         articleDTO.setDate(this.date);
         articleDTO.setLink(this.link);
-        articleDTO.setContent(this.content);
         return articleDTO;
     }
 
