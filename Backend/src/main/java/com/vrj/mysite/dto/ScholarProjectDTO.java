@@ -28,8 +28,5 @@ public class ScholarProjectDTO {
     @NotBlank
     private String repository;
 
-    @NotBlank
-    private String content;
-
     private Set<Tag> tags;
 }

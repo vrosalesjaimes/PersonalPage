@@ -68,14 +68,12 @@ public class PersonalProject {
             this.title = project.getTitle();
         if (project.getDescription() != null)
             this.description = project.getDescription();
-        if (initialImage != null)
+        if (project.getInitialImage() != null)
             this.initialImage = project.getInitialImage();
         if (project.getDate() != null)
             this.date = project.getDate();
         if (project.getRepository() != null)
             this.repository = project.getRepository();
-        if (project.getContent() != null)
-            this.content = project.getContent();
         return this;
     }
 

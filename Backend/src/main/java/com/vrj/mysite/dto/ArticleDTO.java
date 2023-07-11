@@ -25,7 +25,4 @@ public class ArticleDTO {
 
     @URL
     private String link;
-
-    @NotBlank
-    private String content;
 }
