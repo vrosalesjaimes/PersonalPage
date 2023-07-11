@@ -1,5 +1,6 @@
 package com.vrj.mysite.model;
 
+import com.vrj.mysite.dto.PersonalProjectDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -61,4 +62,48 @@ public class PersonalProject {
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Author.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinTable(name="personal_project_author", joinColumns = @JoinColumn(name =  "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors;
+
+    public PersonalProject update(PersonalProject project){
+        if (project.getTitle() != null)
+            this.title = project.getTitle();
+        if (project.getDescription() != null)
+            this.description = project.getDescription();
+        if (initialImage != null)
+            this.initialImage = project.getInitialImage();
+        if (project.getDate() != null)
+            this.date = project.getDate();
+        if (project.getRepository() != null)
+            this.repository = project.getRepository();
+        if (project.getContent() != null)
+            this.content = project.getContent();
+        return this;
+    }
+
+    public void addImages(Set<Image> savedImages){
+        this.images.addAll(savedImages);
+    }
+
+    public void addReferences(Set<Reference> savedReferences){
+        this.references.addAll(savedReferences);
+    }
+
+    public void addTags(Set<Tag> savedTags){
+        this.tags.addAll(savedTags);
+    }
+
+    public void addAuthors(Set<Author> savedAuthors){
+        this.authors.addAll(savedAuthors);
+    }
+
+    public PersonalProjectDTO toDTO(){
+        PersonalProjectDTO projectDTO = new PersonalProjectDTO();
+        projectDTO.setTitle(this.getTitle());
+        projectDTO.setDescription(this.getDescription());
+        projectDTO.setInitialImage(this.getInitialImage());
+        projectDTO.setDate(this.getDate());
+        projectDTO.setRepository(this.getRepository());
+        projectDTO.setContent(this.getContent());
+        projectDTO.setTags(this.tags);
+        return projectDTO;
+    }
 }
