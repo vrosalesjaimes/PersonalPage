@@ -29,7 +29,6 @@ public class ScholarProject {
     @NotBlank
     private String description;
 
-    @URL
     @NotBlank
     private String initialImage;
 

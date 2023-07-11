@@ -28,7 +28,6 @@ public class Post {
     @NotBlank
     private String description;
 
-    @URL
     private String initImage;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")

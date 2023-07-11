@@ -29,7 +29,6 @@ public class PersonalProject {
     @NotBlank
     private String description;
 
-    @URL
     @NotBlank
     private String initialImage;
 
