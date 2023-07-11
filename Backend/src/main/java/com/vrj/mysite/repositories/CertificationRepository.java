@@ -9,7 +9,7 @@ import java.util.Set;
 
 public interface CertificationRepository extends JpaRepository<Certification, Long> {
 
-    public Set<Certification> findAllByIdiom(Idiom idiom);
+    public Set<Certification> findAllByIdiom_id(Long idiom_id);
     public Optional<Certification> findByTitleAndIdiom_id(String title, Long idiom_id);
     public Set<Certification> findAllByTitleContainingIgnoreCaseAndIdiom_Id(String title, Long idiomId);
     public Set<Certification> findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(String tagName, Long idiomId);
