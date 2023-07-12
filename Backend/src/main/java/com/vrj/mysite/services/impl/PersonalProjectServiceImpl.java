@@ -38,17 +38,17 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
     @Override
     public ResponseEntity<PersonalProject> createPersonalProject(Long idiomId,
                                                                  PersonalProject personalProject) throws PersonalProjectFoundException {
-        
-        Optional<PersonalProject> localProject = this.personalProjectRepository
-                .findByTitleAndIdiom_id(personalProject.getTitle(), idiomId);
-        if(localProject.isPresent())
-            throw new PersonalProjectFoundException();
 
         Optional<Idiom> idiom = this.idiomRepository.findById(idiomId);
         if (idiom.isPresent())
             personalProject.setIdiom(idiom.get());
         else
             personalProject.setIdiom(this.idiomRepository.save(personalProject.getIdiom()));
+
+        Optional<PersonalProject> localProject = this.personalProjectRepository
+                .findByTitleAndIdiom_id(personalProject.getTitle(), idiomId);
+        if(localProject.isPresent())
+            throw new PersonalProjectFoundException();
 
         Set<Image> savedImages = new HashSet<>();
         for (Image image : personalProject.getImages()) {

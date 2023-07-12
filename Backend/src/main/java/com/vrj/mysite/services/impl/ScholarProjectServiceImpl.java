@@ -37,16 +37,17 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
     
     @Override
     public ResponseEntity<ScholarProject> creteScholarProject(Long idiomId, ScholarProject scholarProject) throws ScholarProjectFoundException {
-        Optional<ScholarProject> localProject = this.scholarProjectRepository
-                .findByTitleAndIdiom_id(scholarProject.getTitle(), idiomId);
-        if(localProject.isPresent())
-            throw new ScholarProjectFoundException();
-
         Optional<Idiom> idiom = this.idiomRepository.findById(idiomId);
         if (idiom.isPresent())
             scholarProject.setIdiom(idiom.get());
         else
             scholarProject.setIdiom(this.idiomRepository.save(scholarProject.getIdiom()));
+
+        Optional<ScholarProject> localProject = this.scholarProjectRepository
+                .findByTitleAndIdiom_id(scholarProject.getTitle(), idiomId);
+        if(localProject.isPresent())
+            throw new ScholarProjectFoundException();
+
 
         Set<Image> savedImages = new HashSet<>();
         for (Image image : scholarProject.getImages()) {
