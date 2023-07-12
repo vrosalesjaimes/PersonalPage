@@ -19,7 +19,7 @@ import java.util.Set;
 public class Certification {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -42,7 +42,7 @@ public class Certification {
     @JoinColumn(name = "image_id")
     private Image image;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinTable(name="certification_tag", joinColumns = @JoinColumn(name =  "certification_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags;
 

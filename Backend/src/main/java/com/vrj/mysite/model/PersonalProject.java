@@ -20,7 +20,7 @@ import java.util.Set;
 public class PersonalProject {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -46,19 +46,19 @@ public class PersonalProject {
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Image.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Image.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinTable(name="personal_project_image", joinColumns = @JoinColumn(name =  "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
     private Set<Image> images;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Reference.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Reference.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinTable(name="personal_project_reference", joinColumns = @JoinColumn(name =  "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "reference_id"))
     private Set<Reference> references;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinTable(name="personal_project_tag", joinColumns = @JoinColumn(name =  "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Author.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Author.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinTable(name="personal_project_author", joinColumns = @JoinColumn(name =  "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors;
 

@@ -19,7 +19,7 @@ import java.util.Set;
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -40,11 +40,11 @@ public class Post {
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Image.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Image.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinTable(name="post_image", joinColumns = @JoinColumn(name =  "post_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
     private Set<Image> images;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinTable(name="post_tag", joinColumns = @JoinColumn(name =  "post_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags;
 

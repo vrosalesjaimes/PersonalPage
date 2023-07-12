@@ -17,7 +17,7 @@ import java.util.Date;
 public class WorkExperience {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -35,7 +35,7 @@ public class WorkExperience {
     @NotBlank
     private String activities;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 
