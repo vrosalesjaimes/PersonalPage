@@ -13,7 +13,6 @@ import com.vrj.mysite.services.CertificationService;
 import com.vrj.mysite.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 
 import java.util.HashSet;
@@ -98,5 +97,26 @@ public class CertificationServiceImpl implements CertificationService {
     public ResponseEntity<Set<Certification>> searchByTagAndIdiom(String tagName, Long idiomId) {
         return ResponseEntity.ok(this.certificationRepository
                 .findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(tagName, idiomId));
+    }
+
+    @Override
+    public ResponseEntity<String> addTags(Long id, Set<Tag> tags) throws CertificationNotFoundException {
+        Optional<Certification> localProject = this.certificationRepository.findById(id);
+
+        if (localProject.isEmpty())
+            throw new CertificationNotFoundException();
+
+        Set<Tag> savedTag = new HashSet<>();
+        for (Tag tag: tags){
+            try {
+                savedTag.add(this.tagService.createTag(tag).getBody());
+            } catch (TagFoundException e) {
+                savedTag.add(this.tagRepository.findByName((tag.getName())).get());
+            }
+        }
+        localProject.get().addTags(savedTag);
+        this.certificationRepository.save(localProject.get());
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("Images have been successfully added");
     }
 }

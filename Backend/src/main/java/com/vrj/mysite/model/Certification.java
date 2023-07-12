@@ -59,7 +59,7 @@ public class Certification {
         return this;
     }
 
-    public void addCertifications(Set<Tag> addedTags){
+    public void addTags(Set<Tag> addedTags){
         this.tags.addAll(addedTags);
     }
 
