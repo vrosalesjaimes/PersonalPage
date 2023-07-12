@@ -7,9 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IdiomRepository extends JpaRepository<Idiom, Long> {
+    List<Idiom> findAll();
 
-    public List<Idiom> findAll();
-
-    public Optional<Idiom> findByName(String idiom);
+    Optional<Idiom> findByName(String idiom);
 
 }

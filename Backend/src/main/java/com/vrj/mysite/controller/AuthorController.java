@@ -18,7 +18,7 @@ public class AuthorController {
     private AuthorService authorService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createAuthor(@RequestBody Author author){
+    public ResponseEntity<?> createAuthor(@RequestBody Author author) {
         try {
             return this.authorService.createAuthor(author);
         } catch (AuthorFoundException e) {
@@ -29,7 +29,7 @@ public class AuthorController {
 
     @PutMapping("/update/{id}")
     private ResponseEntity<?> updateAuthor(@PathVariable(value = "id") Long id,
-                                           @RequestBody Author author){
+                                           @RequestBody Author author) {
         try {
             return this.authorService.updateAuthor(id, author);
         } catch (AuthorNotFoundException e) {
@@ -39,7 +39,7 @@ public class AuthorController {
     }
 
     @DeleteMapping("/delete/{id}")
-    private ResponseEntity<?> deleteAuthor(@PathVariable(value = "id") Long id){
+    private ResponseEntity<?> deleteAuthor(@PathVariable(value = "id") Long id) {
         return this.authorService.delete(id);
     }
 }

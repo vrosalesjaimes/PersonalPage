@@ -42,11 +42,11 @@ public class CertificationServiceImpl implements CertificationService {
         Optional<Certification> localCertification =
                 this.certificationRepository.findByTitleAndIdiom_id(certification.getTitle(), id);
 
-        if(localCertification.isPresent())
+        if (localCertification.isPresent())
             throw new CertificationFoundException();
 
         Set<Tag> savedTag = new HashSet<>();
-        for (Tag tag: certification.getTags()){
+        for (Tag tag : certification.getTags()) {
             try {
                 savedTag.add(this.tagService.createTag(tag).getBody());
             } catch (TagFoundException e) {
@@ -64,7 +64,7 @@ public class CertificationServiceImpl implements CertificationService {
         Optional<Certification> localCertification =
                 this.certificationRepository.findByTitleAndIdiom_id(certification.getTitle(), id);
 
-        if(localCertification.isEmpty())
+        if (localCertification.isEmpty())
             throw new CertificationNotFoundException();
 
         certification = localCertification.get().update(certification);
@@ -74,7 +74,7 @@ public class CertificationServiceImpl implements CertificationService {
 
     @Override
     public ResponseEntity<String> delete(Long id) {
-        if(this.certificationRepository.existsById(id)){
+        if (this.certificationRepository.existsById(id)) {
             this.certificationRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body("Certification successfully removed.");
         }
@@ -90,7 +90,7 @@ public class CertificationServiceImpl implements CertificationService {
     @Override
     public ResponseEntity<Set<Certification>> searchByTitle(String title, Long idiomId) {
         return ResponseEntity.ok(this.certificationRepository
-                .findAllByTitleContainingIgnoreCaseAndIdiom_Id(title,idiomId));
+                .findAllByTitleContainingIgnoreCaseAndIdiom_Id(title, idiomId));
     }
 
     @Override
@@ -107,7 +107,7 @@ public class CertificationServiceImpl implements CertificationService {
             throw new CertificationNotFoundException();
 
         Set<Tag> savedTag = new HashSet<>();
-        for (Tag tag: tags){
+        for (Tag tag : tags) {
             try {
                 savedTag.add(this.tagService.createTag(tag).getBody());
             } catch (TagFoundException e) {

@@ -29,9 +29,9 @@ public class IdiomController {
 
     @PutMapping("/update/{id}")
     private ResponseEntity<?> updateIdiom(@PathVariable(value = "id") Long id,
-                                          @RequestBody Idiom idiom){
+                                          @RequestBody Idiom idiom) {
         try {
-            return this.idiomService.updateIdiom(id,idiom);
+            return this.idiomService.updateIdiom(id, idiom);
         } catch (IdiomNotFoundException e) {
             System.out.println("Idiom not found.");
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Idiom not found.");
@@ -39,7 +39,7 @@ public class IdiomController {
     }
 
     @DeleteMapping("/delete/{id}")
-    private ResponseEntity<?> deleteIdiom(@PathVariable Long id){
+    private ResponseEntity<?> deleteIdiom(@PathVariable Long id) {
         return idiomService.deleteIdiom(id);
     }
 }

@@ -67,7 +67,7 @@ public class ArticleServiceImpl implements ArticleService {
         article.setAuthors(savedAuthors);
 
         Set<Reference> savedReferences = new HashSet<>();
-        for (Reference reference: article.getReferences()) {
+        for (Reference reference : article.getReferences()) {
             try {
                 savedReferences.add(this.referenceService.createReference(reference).getBody());
             } catch (ReferenceFoundException e) {
@@ -77,7 +77,7 @@ public class ArticleServiceImpl implements ArticleService {
         article.setReferences(savedReferences);
 
         Set<Tag> savedTag = new HashSet<>();
-        for (Tag tag: article.getTags()){
+        for (Tag tag : article.getTags()) {
             try {
                 savedTag.add(this.tagService.createTag(tag).getBody());
             } catch (TagFoundException e) {
@@ -111,7 +111,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ResponseEntity<String> deleteArticle(Long id) {
-        if (this.articleRepository.existsById(id)){
+        if (this.articleRepository.existsById(id)) {
             this.articleRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body("Article successfully removed");
         }
@@ -169,7 +169,7 @@ public class ArticleServiceImpl implements ArticleService {
             throw new ArticleNotFoundException();
 
         Set<Reference> savedReferences = new HashSet<>();
-        for (Reference reference: references){
+        for (Reference reference : references) {
             try {
                 savedReferences.add(this.referenceService.createReference(reference).getBody());
             } catch (ReferenceFoundException e) {
@@ -189,7 +189,7 @@ public class ArticleServiceImpl implements ArticleService {
             throw new ArticleNotFoundException();
 
         Set<Tag> savedTag = new HashSet<>();
-        for (Tag tag: tags){
+        for (Tag tag : tags) {
             try {
                 savedTag.add(this.tagService.createTag(tag).getBody());
             } catch (TagFoundException e) {
@@ -220,13 +220,13 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ResponseEntity<Set<ArticleDTO>> searchByTitleAndIdiom(String title, Long idiomId) {
-        Set<Article> localArticles = this.articleRepository.findAllByTitleContainingIgnoreCaseAndIdiom_Id(title,idiomId);
+        Set<Article> localArticles = this.articleRepository.findAllByTitleContainingIgnoreCaseAndIdiom_Id(title, idiomId);
         return ResponseEntity.ok(this.setArticleToSetArticleDto(localArticles));
     }
 
     @Override
     public ResponseEntity<Set<ArticleDTO>> searchByNameAuthorAndIdIdiom(String authorName, Long idIdiom) {
-        Set<Article> articles = this.articleRepository.findAllByAuthors_NameContainingIgnoreCaseAndIdiom_Id(authorName,idIdiom);
+        Set<Article> articles = this.articleRepository.findAllByAuthors_NameContainingIgnoreCaseAndIdiom_Id(authorName, idIdiom);
         return ResponseEntity.ok(this.setArticleToSetArticleDto(articles));
     }
 
@@ -236,8 +236,8 @@ public class ArticleServiceImpl implements ArticleService {
         return ResponseEntity.ok(this.setArticleToSetArticleDto(articles));
     }
 
-    public Set<ArticleDTO> setArticleToSetArticleDto(Set<Article> articles){
-        return  articles.stream()
+    public Set<ArticleDTO> setArticleToSetArticleDto(Set<Article> articles) {
+        return articles.stream()
                 .map(Article::toDTO)
                 .collect(Collectors.toSet());
     }

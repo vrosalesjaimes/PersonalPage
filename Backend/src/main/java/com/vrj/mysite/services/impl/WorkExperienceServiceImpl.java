@@ -24,7 +24,7 @@ public class WorkExperienceServiceImpl implements WorkExperienceService {
     private IdiomRepository idiomRepository;
 
     @Override
-    public ResponseEntity<WorkExperience> createWorkExperience(WorkExperience workExperience){
+    public ResponseEntity<WorkExperience> createWorkExperience(WorkExperience workExperience) {
         Optional<Idiom> idiom = this.idiomRepository.findById(workExperience.getId());
         if (idiom.isPresent())
             workExperience.setIdiom(idiom.get());
@@ -49,7 +49,7 @@ public class WorkExperienceServiceImpl implements WorkExperienceService {
 
     @Override
     public ResponseEntity<String> deleteWorkExperience(Long id) {
-        if(this.workExperienceRepository.existsById(id)){
+        if (this.workExperienceRepository.existsById(id)) {
             this.workExperienceRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body("Experience successfully removed");
         }

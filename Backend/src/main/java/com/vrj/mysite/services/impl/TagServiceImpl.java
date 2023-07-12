@@ -4,8 +4,8 @@ import com.vrj.mysite.exceptions.TagFoundException;
 import com.vrj.mysite.exceptions.TagNotFoundException;
 import com.vrj.mysite.model.Idiom;
 import com.vrj.mysite.model.Tag;
-import com.vrj.mysite.repositories.TagRepository;
 import com.vrj.mysite.repositories.IdiomRepository;
+import com.vrj.mysite.repositories.TagRepository;
 import com.vrj.mysite.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ public class TagServiceImpl implements TagService {
     public ResponseEntity<Tag> createTag(Tag tag) throws TagFoundException {
         Optional<Tag> localTag = this.tagRepository.findByName(tag.getName());
 
-        if(localTag.isPresent())
+        if (localTag.isPresent())
             throw new TagFoundException();
 
         Optional<Idiom> localIdiom = idiomRepository.findByName(tag.getIdiom().getName());
@@ -47,7 +47,7 @@ public class TagServiceImpl implements TagService {
     public ResponseEntity<String> updateTag(Long id, Tag tag) throws TagNotFoundException {
         Optional<Tag> localTag = this.tagRepository.findById(id);
 
-        if(localTag.isEmpty())
+        if (localTag.isEmpty())
             throw new TagNotFoundException();
 
         Tag updatedtag = localTag.get().update(tag);
@@ -58,7 +58,7 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public ResponseEntity<String> deleteTag(Long id) {
-        if(this.tagRepository.findById(id).isPresent()){
+        if (this.tagRepository.findById(id).isPresent()) {
             this.tagRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body("Tag successfully removed");
         }

@@ -25,12 +25,12 @@ public class UserController {
     }
 
     @PostMapping("/update-user")
-    public ResponseEntity<UserEntity> updateUser(@RequestBody UpdateUserDTO updateUserDTO) throws UserNotFoundException{
+    public ResponseEntity<UserEntity> updateUser(@RequestBody UpdateUserDTO updateUserDTO) throws UserNotFoundException {
         return userService.updateUser(updateUserDTO);
     }
 
     @DeleteMapping("/delete-user/{id}")
-    public void deleteUser(@PathVariable("id") Long id){
+    public void deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
     }
 

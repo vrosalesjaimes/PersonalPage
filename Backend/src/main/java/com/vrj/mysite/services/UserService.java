@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 
 public interface UserService {
 
-    public ResponseEntity<UserEntity> createUser(CreateUserDTO createUserDTO) throws UserFoundException;
+    ResponseEntity<UserEntity> createUser(CreateUserDTO createUserDTO) throws UserFoundException;
 
-    public ResponseEntity<UserEntity> updateUser(UpdateUserDTO updateUserDTO) throws UserNotFoundException;
+    ResponseEntity<UserEntity> updateUser(UpdateUserDTO updateUserDTO) throws UserNotFoundException;
 
-    public void deleteUser(Long id);
+    void deleteUser(Long id);
 }

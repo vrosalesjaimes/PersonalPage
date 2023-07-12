@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -41,15 +40,15 @@ public class Education {
     @JoinColumn(name = "image_id")
     private Image image;
 
-    public Education update(Education education){
+    public Education update(Education education) {
 
-        if(education.getTitle() != null)
+        if (education.getTitle() != null)
             this.title = education.getTitle();
-        if(education.getAverage() != null)
+        if (education.getAverage() != null)
             this.average = education.getAverage();
-        if(education.getInitialDate() != null)
+        if (education.getInitialDate() != null)
             this.initialDate = education.getInitialDate();
-        if(education.getFinalDate() != null)
+        if (education.getFinalDate() != null)
             this.finalDate = education.getFinalDate();
 
         return this;

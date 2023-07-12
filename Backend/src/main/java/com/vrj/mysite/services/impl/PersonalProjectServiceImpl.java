@@ -49,7 +49,7 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
 
         Optional<PersonalProject> localProject = this.personalProjectRepository
                 .findByTitleAndIdiom_id(personalProject.getTitle(), idiomId);
-        if(localProject.isPresent())
+        if (localProject.isPresent())
             throw new PersonalProjectFoundException();
 
         Set<Image> savedImages = new HashSet<>();
@@ -73,7 +73,7 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
         personalProject.setAuthors(savedAuthors);
 
         Set<Reference> savedReferences = new HashSet<>();
-        for (Reference reference: personalProject.getReferences()) {
+        for (Reference reference : personalProject.getReferences()) {
             try {
                 savedReferences.add(this.referenceService.createReference(reference).getBody());
             } catch (ReferenceFoundException e) {
@@ -83,7 +83,7 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
         personalProject.setReferences(savedReferences);
 
         Set<Tag> savedTag = new HashSet<>();
-        for (Tag tag: personalProject.getTags()){
+        for (Tag tag : personalProject.getTags()) {
             try {
                 savedTag.add(this.tagService.createTag(tag).getBody());
             } catch (TagFoundException e) {
@@ -91,7 +91,7 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
             }
         }
         personalProject.setTags(savedTag);
-        
+
         personalProject = this.personalProjectRepository.save(personalProject);
 
         return ResponseEntity.ok(personalProject);
@@ -122,7 +122,7 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
     public ResponseEntity<PersonalProject> getById(Long id) throws PersonalProjectNotFoundException {
         Optional<PersonalProject> localProject = this.personalProjectRepository.findById(id);
 
-        if(localProject.isEmpty())
+        if (localProject.isEmpty())
             throw new PersonalProjectNotFoundException();
 
         return ResponseEntity.ok(localProject.get());
@@ -202,7 +202,7 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
             throw new PersonalProjectNotFoundException();
 
         Set<Reference> savedReferences = new HashSet<>();
-        for (Reference reference: references){
+        for (Reference reference : references) {
             try {
                 savedReferences.add(this.referenceService.createReference(reference).getBody());
             } catch (ReferenceFoundException e) {
@@ -223,7 +223,7 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
             throw new PersonalProjectNotFoundException();
 
         Set<Tag> savedTag = new HashSet<>();
-        for (Tag tag: tags){
+        for (Tag tag : tags) {
             try {
                 savedTag.add(this.tagService.createTag(tag).getBody());
             } catch (TagFoundException e) {
@@ -236,8 +236,8 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Images have been successfully added");
     }
 
-    public Set<PersonalProjectDTO> setProjectToSetProjectDto(Set<PersonalProject> projects){
-        return  projects.stream()
+    public Set<PersonalProjectDTO> setProjectToSetProjectDto(Set<PersonalProject> projects) {
+        return projects.stream()
                 .map(PersonalProject::toDTO)
                 .collect(Collectors.toSet());
     }

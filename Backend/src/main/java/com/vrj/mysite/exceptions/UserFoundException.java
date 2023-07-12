@@ -1,12 +1,12 @@
 package com.vrj.mysite.exceptions;
 
-public class UserFoundException extends Exception{
+public class UserFoundException extends Exception {
 
-    public UserFoundException(){
+    public UserFoundException() {
         super("User already exists");
     }
 
-    public UserFoundException(String mensaje){
+    public UserFoundException(String mensaje) {
         super(mensaje);
     }
 

@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,19 +34,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity<UserEntity> createUser(CreateUserDTO createUserDTO) throws UserFoundException {
 
-        if(this.userRepository.findByUsername(createUserDTO.getUsername()) != null){
+        if (this.userRepository.findByUsername(createUserDTO.getUsername()) != null) {
             throw new UserFoundException();
         }
 
         Set<Rol> roles = new HashSet<Rol>();
 
-        for(String role: createUserDTO.getRols()){
+        for (String role : createUserDTO.getRols()) {
             RolApplication roleName = RolApplication.valueOf(role);
             Rol localRol = rolRepository.findByName(roleName);
 
-            if(localRol != null)
+            if (localRol != null)
                 roles.add(localRol);
-            else{
+            else {
                 Rol newRole = Rol.builder().name(roleName).build();
                 rolRepository.save(newRole);
                 roles.add(newRole);
@@ -70,7 +69,7 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<UserEntity> updateUser(UpdateUserDTO updateUserDTO) throws UserNotFoundException {
         UserEntity userEntity = this.userRepository.findByUsername(updateUserDTO.getUsername());
 
-        if(userEntity == null){
+        if (userEntity == null) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
@@ -83,12 +82,12 @@ public class UserServiceImpl implements UserService {
         if (updateUserDTO.getEmail() != null) {
             userEntity.setEmail(updateUserDTO.getEmail());
         }
-        if(updateUserDTO.getPassword() != null)
+        if (updateUserDTO.getPassword() != null)
             userEntity.setPassword(passwordEncoder.encode(updateUserDTO.getPassword()));
-        if(updateUserDTO.getPhone() != null){
+        if (updateUserDTO.getPhone() != null) {
             userEntity.setPhone(updateUserDTO.getPhone());
         }
-        if (updateUserDTO.getPhoto() != null){
+        if (updateUserDTO.getPhoto() != null) {
             userEntity.setPhoto(updateUserDTO.getPhoto());
         }
 

@@ -18,7 +18,7 @@ public class TagController {
     private TagService tagService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createTag(@RequestBody Tag tag){
+    public ResponseEntity<?> createTag(@RequestBody Tag tag) {
         try {
             return this.tagService.createTag(tag);
         } catch (TagFoundException e) {
@@ -29,9 +29,9 @@ public class TagController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateTag(@PathVariable(value = "id") Long id,
-                                       @RequestBody Tag tag){
+                                       @RequestBody Tag tag) {
         try {
-            return this.tagService.updateTag(id,tag);
+            return this.tagService.updateTag(id, tag);
         } catch (TagNotFoundException e) {
             System.out.println("Tag not found.");
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Tag not found.");
@@ -39,7 +39,7 @@ public class TagController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteTag(@PathVariable(value = "id") Long id){
+    public ResponseEntity<?> deleteTag(@PathVariable(value = "id") Long id) {
         return this.tagService.deleteTag(id);
     }
 

@@ -8,8 +8,11 @@ import java.util.Set;
 
 public interface WorkExperienceService {
 
-    public ResponseEntity<WorkExperience> createWorkExperience(WorkExperience workExperience);
-    public ResponseEntity<String> updateWorkExperience(Long id, WorkExperience workExperience) throws WorkExperienceNotFoundException;
-    public ResponseEntity<String> deleteWorkExperience(Long id);
-    public ResponseEntity<Set<WorkExperience>> getAllByIdiomId(Long idiomId);
+    ResponseEntity<WorkExperience> createWorkExperience(WorkExperience workExperience);
+
+    ResponseEntity<String> updateWorkExperience(Long id, WorkExperience workExperience) throws WorkExperienceNotFoundException;
+
+    ResponseEntity<String> deleteWorkExperience(Long id);
+
+    ResponseEntity<Set<WorkExperience>> getAllByIdiomId(Long idiomId);
 }

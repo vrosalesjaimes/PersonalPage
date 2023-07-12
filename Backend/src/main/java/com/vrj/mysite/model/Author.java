@@ -27,15 +27,15 @@ public class Author {
     @Email
     private String email;
 
-    public Author update(Author author){
+    public Author update(Author author) {
 
-        if(author.getName() != null)
+        if (author.getName() != null)
             this.name = author.getName();
-        if(author.getTitle() != null)
+        if (author.getTitle() != null)
             this.title = author.getTitle();
-        if(author.getUrl() != null)
+        if (author.getUrl() != null)
             this.url = author.getUrl();
-        if(author.getEmail() != null)
+        if (author.getEmail() != null)
             this.email = author.getEmail();
 
         return this;

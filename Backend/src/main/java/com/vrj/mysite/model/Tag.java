@@ -27,11 +27,11 @@ public class Tag {
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 
-    public Tag update(Tag tag){
+    public Tag update(Tag tag) {
 
-        if(tag.getName() != null)
+        if (tag.getName() != null)
             this.name = tag.getName();
-        if(tag.getDescription() != null)
+        if (tag.getDescription() != null)
             this.description = tag.getDescription();
 
         return this;

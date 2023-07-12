@@ -10,11 +10,17 @@ import java.util.Set;
 
 public interface CertificationService {
 
-    public ResponseEntity<Certification> createCertification(Long id, Certification certification) throws CertificationFoundException;
-    public ResponseEntity<String> updateCertification(Long id, Certification certification) throws CertificationNotFoundException;
-    public ResponseEntity<String> delete(Long id);
-    public ResponseEntity<Set<Certification>> getAllByIdiomId(Long id);
-    public ResponseEntity<Set<Certification>> searchByTitle(String title, Long idiomId);
-    public ResponseEntity<Set<Certification>> searchByTagAndIdiom(String tagName, Long idiomId);
-    public ResponseEntity<String> addTags(Long id, Set<Tag> tags) throws CertificationNotFoundException;
+    ResponseEntity<Certification> createCertification(Long id, Certification certification) throws CertificationFoundException;
+
+    ResponseEntity<String> updateCertification(Long id, Certification certification) throws CertificationNotFoundException;
+
+    ResponseEntity<String> delete(Long id);
+
+    ResponseEntity<Set<Certification>> getAllByIdiomId(Long id);
+
+    ResponseEntity<Set<Certification>> searchByTitle(String title, Long idiomId);
+
+    ResponseEntity<Set<Certification>> searchByTagAndIdiom(String tagName, Long idiomId);
+
+    ResponseEntity<String> addTags(Long id, Set<Tag> tags) throws CertificationNotFoundException;
 }

@@ -1,12 +1,12 @@
 package com.vrj.mysite.exceptions;
 
-public class UserNotFoundException extends Exception{
+public class UserNotFoundException extends Exception {
 
-    public UserNotFoundException(){
+    public UserNotFoundException() {
         super("User not found");
     }
 
-    public UserNotFoundException(String mensaje){
+    public UserNotFoundException(String mensaje) {
         super(mensaje);
     }
 

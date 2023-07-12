@@ -10,8 +10,11 @@ import java.util.Set;
 
 public interface ReferenceService {
 
-    public ResponseEntity<Reference> createReference(Reference reference) throws ReferenceFoundException;
-    public ResponseEntity<String> updateReference(Long id, Reference reference) throws ReferenceNotFoundException;
-    public ResponseEntity<String> deleteReference(Long id);
-    public ResponseEntity<String> addAuthors(Long id, Set<Author> authors) throws ReferenceFoundException;
+    ResponseEntity<Reference> createReference(Reference reference) throws ReferenceFoundException;
+
+    ResponseEntity<String> updateReference(Long id, Reference reference) throws ReferenceNotFoundException;
+
+    ResponseEntity<String> deleteReference(Long id);
+
+    ResponseEntity<String> addAuthors(Long id, Set<Author> authors) throws ReferenceFoundException;
 }

@@ -21,7 +21,7 @@ public class ReferenceController {
     private ReferenceService referenceService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createReference(@RequestBody Reference reference){
+    public ResponseEntity<?> createReference(@RequestBody Reference reference) {
         try {
             return this.referenceService.createReference(reference);
         } catch (ReferenceFoundException e) {
@@ -32,7 +32,7 @@ public class ReferenceController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateReference(@PathVariable(value = "id") Long id,
-                                                  @RequestBody Reference reference){
+                                                  @RequestBody Reference reference) {
         try {
             return this.referenceService.updateReference(id, reference);
         } catch (ReferenceNotFoundException e) {
@@ -42,13 +42,13 @@ public class ReferenceController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteReference(@PathVariable Long id){
+    public ResponseEntity<String> deleteReference(@PathVariable Long id) {
         return this.referenceService.deleteReference(id);
     }
 
     @PutMapping("/{id}/add-authors")
     public ResponseEntity<String> addAuthors(@PathVariable(value = "id") Long id,
-                                             @RequestBody Set<Author> authors){
+                                             @RequestBody Set<Author> authors) {
         try {
             return this.referenceService.addAuthors(id, authors);
         } catch (ReferenceFoundException e) {

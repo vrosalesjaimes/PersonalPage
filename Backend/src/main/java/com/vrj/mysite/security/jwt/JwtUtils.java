@@ -24,10 +24,11 @@ public class JwtUtils {
 
     /**
      * Create an authentication token.
+     *
      * @param username, the username of user.
      * @return token.
      */
-    public String generateAccessToken(String username){
+    public String generateAccessToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
@@ -38,33 +39,35 @@ public class JwtUtils {
 
     /**
      * Returns the token signature.
+     *
      * @return the token signature.
      */
-    public Key getSignatureKey(){
+    public Key getSignatureKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
     /**
      * Determine if a toke is valid
+     *
      * @param token, the token to validate
      * @return true if it is valid and false otherwise
      */
-    public boolean isTokenValid(String token){
-        try{
+    public boolean isTokenValid(String token) {
+        try {
             Jwts.parserBuilder()
                     .setSigningKey(getSignatureKey())
                     .build()
                     .parseClaimsJws(token)
                     .getBody();
             return true;
-        }catch (Exception exception){
+        } catch (Exception exception) {
             log.error("Invalid token, error: ".concat(exception.getMessage()));
             return false;
         }
     }
 
-    public Claims extractAllClaims(String token){
+    public Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSignatureKey())
                 .build()
@@ -72,12 +75,12 @@ public class JwtUtils {
                 .getBody();
     }
 
-    public <T> T getClaim(String token, Function<Claims, T> claimsTFunction){
+    public <T> T getClaim(String token, Function<Claims, T> claimsTFunction) {
         Claims claims = extractAllClaims(token);
         return claimsTFunction.apply(claims);
     }
 
-    public String getUsernameFromToken(String token){
+    public String getUsernameFromToken(String token) {
         return getClaim(token, Claims::getSubject);
     }
 }

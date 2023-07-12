@@ -26,7 +26,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PostServiceImpl implements PostService {
-    
+
     @Autowired
     private PostRepository postRepository;
     @Autowired
@@ -39,7 +39,7 @@ public class PostServiceImpl implements PostService {
     private TagRepository tagRepository;
     @Autowired
     private TagService tagService;
-    
+
     @Override
     public ResponseEntity<Post> createPost(Long idiomId, Post post) throws PostFoundException {
         Optional<Idiom> idiom = this.idiomRepository.findById(idiomId);
@@ -47,7 +47,7 @@ public class PostServiceImpl implements PostService {
             post.setIdiom(idiom.get());
         else
             post.setIdiom(this.idiomRepository.save(post.getIdiom()));
-        
+
         Optional<Post> localPost = this.postRepository.findByTitleAndIdiom_id(post.getTitle(), idiomId);
         if (localPost.isPresent())
             throw new PostFoundException();
@@ -64,7 +64,7 @@ public class PostServiceImpl implements PostService {
         post.setImages(savedImages);
 
         Set<Tag> savedTag = new HashSet<>();
-        for (Tag tag: post.getTags()){
+        for (Tag tag : post.getTags()) {
             try {
                 savedTag.add(this.tagService.createTag(tag).getBody());
             } catch (TagFoundException e) {
@@ -72,20 +72,20 @@ public class PostServiceImpl implements PostService {
             }
         }
         post.setTags(savedTag);
-        
+
         post = this.postRepository.save(post);
-        
+
         return ResponseEntity.ok(post);
     }
 
     @Override
     public ResponseEntity<String> updatePost(Long id, Post post) throws PostNotFoundException {
-        Optional<Post>  localPost = this.postRepository.findById(id);
+        Optional<Post> localPost = this.postRepository.findById(id);
 
         if (localPost.isEmpty())
             throw new PostNotFoundException();
 
-        Post savedPost =  localPost.get().update(post);
+        Post savedPost = localPost.get().update(post);
         this.postRepository.save(savedPost);
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Post has been update.");
@@ -93,7 +93,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public ResponseEntity<String> deletePost(Long id) {
-        if(this.postRepository.existsById(id)){
+        if (this.postRepository.existsById(id)) {
             this.postRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body("Post successfully deleted.");
         }
@@ -158,7 +158,7 @@ public class PostServiceImpl implements PostService {
             throw new PostNotFoundException();
 
         Set<Tag> savedTag = new HashSet<>();
-        for (Tag tag: tags){
+        for (Tag tag : tags) {
             try {
                 savedTag.add(this.tagService.createTag(tag).getBody());
             } catch (TagFoundException e) {
@@ -171,7 +171,7 @@ public class PostServiceImpl implements PostService {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Tags have been successfully added");
     }
 
-    public Set<PostDTO> setPostToSetPostDTO(Set<Post> posts){
+    public Set<PostDTO> setPostToSetPostDTO(Set<Post> posts) {
         return posts.stream()
                 .map(Post::toDTO)
                 .collect(Collectors.toSet());

@@ -43,7 +43,7 @@ public class IdiomServiceImpl implements IdiomService {
 
         idiom = idiomRepository.save(idiom);
 
-        return  ResponseEntity.ok(idiom);
+        return ResponseEntity.ok(idiom);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class IdiomServiceImpl implements IdiomService {
         if (localIdiom.isEmpty())
             throw new IdiomNotFoundException();
 
-        this.update(localIdiom.get(),idiom);
+        this.update(localIdiom.get(), idiom);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("The idiom has been updated");
     }
 
@@ -68,10 +68,10 @@ public class IdiomServiceImpl implements IdiomService {
     }
 
 
-    private void update(Idiom localIdiom, Idiom idiom){
+    private void update(Idiom localIdiom, Idiom idiom) {
         Image image;
 
-        if(idiom.getImage() != null) {
+        if (idiom.getImage() != null) {
             try {
                 image = this.imageService.createImage(idiom.getImage()).getBody();
                 localIdiom.setImage(image);
@@ -79,7 +79,7 @@ public class IdiomServiceImpl implements IdiomService {
                 System.out.println("The idiom image already exists.");
             }
         }
-        if(idiom.getName() != null){
+        if (idiom.getName() != null) {
             localIdiom.setName(idiom.getName());
         }
 

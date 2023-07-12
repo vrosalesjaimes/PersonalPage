@@ -15,7 +15,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ScholarProjectServiceImpl implements ScholarProjectService {
-    
+
     @Autowired
     private ScholarProjectRepository scholarProjectRepository;
     @Autowired
@@ -36,7 +36,7 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
     private TagRepository tagRepository;
     @Autowired
     private TagService tagService;
-    
+
     @Override
     public ResponseEntity<ScholarProject> creteScholarProject(Long idiomId, ScholarProject scholarProject) throws ScholarProjectFoundException {
         Optional<Idiom> idiom = this.idiomRepository.findById(idiomId);
@@ -47,7 +47,7 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
 
         Optional<ScholarProject> localProject = this.scholarProjectRepository
                 .findByTitleAndIdiom_id(scholarProject.getTitle(), idiomId);
-        if(localProject.isPresent())
+        if (localProject.isPresent())
             throw new ScholarProjectFoundException();
 
 
@@ -72,7 +72,7 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
         scholarProject.setAuthors(savedAuthors);
 
         Set<Reference> savedReferences = new HashSet<>();
-        for (Reference reference: scholarProject.getReferences()) {
+        for (Reference reference : scholarProject.getReferences()) {
             try {
                 savedReferences.add(this.referenceService.createReference(reference).getBody());
             } catch (ReferenceFoundException e) {
@@ -82,7 +82,7 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
         scholarProject.setReferences(savedReferences);
 
         Set<Tag> savedTag = new HashSet<>();
-        for (Tag tag: scholarProject.getTags()){
+        for (Tag tag : scholarProject.getTags()) {
             try {
                 savedTag.add(this.tagService.createTag(tag).getBody());
             } catch (TagFoundException e) {
@@ -120,10 +120,10 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
     @Override
     public ResponseEntity<ScholarProject> getById(Long id) throws ScholarProjectNotFoundException {
         Optional<ScholarProject> localProject = this.scholarProjectRepository.findById(id);
-        
-        if(localProject.isEmpty())
+
+        if (localProject.isEmpty())
             throw new ScholarProjectNotFoundException();
-        
+
         return ResponseEntity.ok(localProject.get());
     }
 
@@ -195,7 +195,7 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
             throw new ScholarProjectNotFoundException();
 
         Set<Reference> savedReferences = new HashSet<>();
-        for (Reference reference: references){
+        for (Reference reference : references) {
             try {
                 savedReferences.add(this.referenceService.createReference(reference).getBody());
             } catch (ReferenceFoundException e) {
@@ -216,7 +216,7 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
             throw new ScholarProjectNotFoundException();
 
         Set<Tag> savedTag = new HashSet<>();
-        for (Tag tag: tags){
+        for (Tag tag : tags) {
             try {
                 savedTag.add(this.tagService.createTag(tag).getBody());
             } catch (TagFoundException e) {
@@ -229,8 +229,8 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Images have been successfully added");
     }
 
-    public Set<ScholarProjectDTO> setProjectToSetProjectDto(Set<ScholarProject> projects){
-        return  projects.stream()
+    public Set<ScholarProjectDTO> setProjectToSetProjectDto(Set<ScholarProject> projects) {
+        return projects.stream()
                 .map(ScholarProject::toDTO)
                 .collect(Collectors.toSet());
     }

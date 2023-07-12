@@ -47,22 +47,22 @@ public class PersonalProject {
     private Idiom idiom;
 
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Image.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinTable(name="personal_project_image", joinColumns = @JoinColumn(name =  "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
+    @JoinTable(name = "personal_project_image", joinColumns = @JoinColumn(name = "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
     private Set<Image> images;
 
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Reference.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinTable(name="personal_project_reference", joinColumns = @JoinColumn(name =  "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "reference_id"))
+    @JoinTable(name = "personal_project_reference", joinColumns = @JoinColumn(name = "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "reference_id"))
     private Set<Reference> references;
 
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinTable(name="personal_project_tag", joinColumns = @JoinColumn(name =  "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    @JoinTable(name = "personal_project_tag", joinColumns = @JoinColumn(name = "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags;
 
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Author.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinTable(name="personal_project_author", joinColumns = @JoinColumn(name =  "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
+    @JoinTable(name = "personal_project_author", joinColumns = @JoinColumn(name = "personal_project_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors;
 
-    public PersonalProject update(PersonalProject project){
+    public PersonalProject update(PersonalProject project) {
         if (project.getTitle() != null)
             this.title = project.getTitle();
         if (project.getDescription() != null)
@@ -76,23 +76,23 @@ public class PersonalProject {
         return this;
     }
 
-    public void addImages(Set<Image> savedImages){
+    public void addImages(Set<Image> savedImages) {
         this.images.addAll(savedImages);
     }
 
-    public void addReferences(Set<Reference> savedReferences){
+    public void addReferences(Set<Reference> savedReferences) {
         this.references.addAll(savedReferences);
     }
 
-    public void addTags(Set<Tag> savedTags){
+    public void addTags(Set<Tag> savedTags) {
         this.tags.addAll(savedTags);
     }
 
-    public void addAuthors(Set<Author> savedAuthors){
+    public void addAuthors(Set<Author> savedAuthors) {
         this.authors.addAll(savedAuthors);
     }
 
-    public PersonalProjectDTO toDTO(){
+    public PersonalProjectDTO toDTO() {
         PersonalProjectDTO projectDTO = new PersonalProjectDTO();
         projectDTO.setTitle(this.getTitle());
         projectDTO.setDescription(this.getDescription());

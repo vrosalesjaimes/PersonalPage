@@ -2,7 +2,6 @@ package com.vrj.mysite.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,10 +30,10 @@ public class About {
     private Idiom idiom;
 
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Image.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @JoinTable(name="about_image", joinColumns = @JoinColumn(name =  "about_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
+    @JoinTable(name = "about_image", joinColumns = @JoinColumn(name = "about_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
     private Set<Image> images;
 
-    public About update(About about){
+    public About update(About about) {
 
         if (about.getContent() != null)
             this.content = about.getContent();

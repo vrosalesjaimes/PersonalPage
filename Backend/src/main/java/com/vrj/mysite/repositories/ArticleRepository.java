@@ -1,18 +1,19 @@
 package com.vrj.mysite.repositories;
 
 import com.vrj.mysite.model.Article;
-import com.vrj.mysite.model.Idiom;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 import java.util.Set;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
+    Optional<Article> findByTitle(String title);
 
-    public Optional<Article> findByTitle(String title);
-    public Set<Article> findAllByIdiom_id(Long idiomId);
-    public Optional<Article> findByTitleAndIdiom_id(String title, Long idiomId);
-    public Set<Article> findAllByTitleContainingIgnoreCaseAndIdiom_Id(String title, Long idiomId);
-    public Set<Article> findAllByAuthors_NameContainingIgnoreCaseAndIdiom_Id(String authorName, Long idiomId);
-    public Set<Article> findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(String tagName, Long idiomId);
+    Set<Article> findAllByIdiom_id(Long idiomId);
+
+    Set<Article> findAllByTitleContainingIgnoreCaseAndIdiom_Id(String title, Long idiomId);
+
+    Set<Article> findAllByAuthors_NameContainingIgnoreCaseAndIdiom_Id(String authorName, Long idiomId);
+
+    Set<Article> findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(String tagName, Long idiomId);
 }

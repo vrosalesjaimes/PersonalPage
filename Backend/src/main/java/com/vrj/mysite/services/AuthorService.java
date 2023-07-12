@@ -7,7 +7,9 @@ import org.springframework.http.ResponseEntity;
 
 public interface AuthorService {
 
-    public ResponseEntity<Author> createAuthor(Author author) throws AuthorFoundException;
-    public ResponseEntity<String> updateAuthor(Long id, Author author) throws AuthorNotFoundException;
-    public ResponseEntity<String> delete(Long id);
+    ResponseEntity<Author> createAuthor(Author author) throws AuthorFoundException;
+
+    ResponseEntity<String> updateAuthor(Long id, Author author) throws AuthorNotFoundException;
+
+    ResponseEntity<String> delete(Long id);
 }

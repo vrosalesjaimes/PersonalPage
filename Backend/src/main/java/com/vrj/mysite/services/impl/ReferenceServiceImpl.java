@@ -37,7 +37,7 @@ public class ReferenceServiceImpl implements ReferenceService {
 
         Set<Author> savedAuthors = new HashSet<>();
 
-        for(Author author: reference.getAuthors()){
+        for (Author author : reference.getAuthors()) {
             try {
                 savedAuthors.add(this.authorService.createAuthor(author).getBody());
             } catch (AuthorFoundException e) {
@@ -55,7 +55,7 @@ public class ReferenceServiceImpl implements ReferenceService {
     public ResponseEntity<String> updateReference(Long id, Reference reference) throws ReferenceNotFoundException {
         Optional<Reference> localReference = this.referenceRepository.findById(id);
 
-        if(localReference.isEmpty())
+        if (localReference.isEmpty())
             throw new ReferenceNotFoundException();
 
         Reference savedReference = localReference.get().update(reference);
@@ -72,7 +72,7 @@ public class ReferenceServiceImpl implements ReferenceService {
             this.referenceRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body("Reference successfully removed.");
         }
-        
+
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Reference not found.");
     }
 

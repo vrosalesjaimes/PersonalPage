@@ -21,7 +21,7 @@ public class ImageServiceImpl implements ImageService {
     public ResponseEntity<Image> createImage(Image image) throws ImageFoundException {
         Optional<Image> localImage = imageRepository.findByUrl(image.getUrl());
 
-        if(localImage.isPresent())
+        if (localImage.isPresent())
             throw new ImageFoundException();
 
         Image savedImage = imageRepository.save(image);
@@ -30,10 +30,10 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public ResponseEntity<String> updateImage(Long id, Image image) throws ImageNotFoundException{
+    public ResponseEntity<String> updateImage(Long id, Image image) throws ImageNotFoundException {
         Optional<Image> localImage = imageRepository.findById(id);
 
-        if(localImage.isEmpty())
+        if (localImage.isEmpty())
             throw new ImageNotFoundException();
 
         Image updatedImage = localImage.get().upload(image);

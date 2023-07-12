@@ -7,8 +7,10 @@ import org.springframework.http.ResponseEntity;
 
 public interface ImageService {
 
-    public ResponseEntity<Image> createImage(Image image) throws ImageFoundException;
-    public ResponseEntity<String> updateImage(Long id, Image image) throws ImageNotFoundException;
-    public void deleteImage(Long id);
+    ResponseEntity<Image> createImage(Image image) throws ImageFoundException;
+
+    ResponseEntity<String> updateImage(Long id, Image image) throws ImageNotFoundException;
+
+    void deleteImage(Long id);
 
 }

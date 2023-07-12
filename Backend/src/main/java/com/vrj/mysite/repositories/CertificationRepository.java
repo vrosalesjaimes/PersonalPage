@@ -1,16 +1,17 @@
 package com.vrj.mysite.repositories;
 
 import com.vrj.mysite.model.Certification;
-import com.vrj.mysite.model.Idiom;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 import java.util.Set;
 
 public interface CertificationRepository extends JpaRepository<Certification, Long> {
+    Set<Certification> findAllByIdiom_id(Long idiom_id);
 
-    public Set<Certification> findAllByIdiom_id(Long idiom_id);
-    public Optional<Certification> findByTitleAndIdiom_id(String title, Long idiom_id);
-    public Set<Certification> findAllByTitleContainingIgnoreCaseAndIdiom_Id(String title, Long idiomId);
-    public Set<Certification> findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(String tagName, Long idiomId);
+    Optional<Certification> findByTitleAndIdiom_id(String title, Long idiom_id);
+
+    Set<Certification> findAllByTitleContainingIgnoreCaseAndIdiom_Id(String title, Long idiomId);
+
+    Set<Certification> findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(String tagName, Long idiomId);
 }

@@ -7,7 +7,9 @@ import org.springframework.http.ResponseEntity;
 
 public interface IdiomService {
 
-    public ResponseEntity<Idiom> createIdiom(Idiom idiom) throws IdiomFoundException;
-    public ResponseEntity<String> updateIdiom(Long id, Idiom idiom) throws IdiomNotFoundException;
-    public ResponseEntity<?> deleteIdiom(Long id);
+    ResponseEntity<Idiom> createIdiom(Idiom idiom) throws IdiomFoundException;
+
+    ResponseEntity<String> updateIdiom(Long id, Idiom idiom) throws IdiomNotFoundException;
+
+    ResponseEntity<?> deleteIdiom(Long id);
 }

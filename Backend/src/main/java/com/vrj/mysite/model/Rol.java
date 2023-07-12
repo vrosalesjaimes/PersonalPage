@@ -6,15 +6,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name="rol", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+@Table(name = "rol", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Rol {
 
     @Id

@@ -1,6 +1,5 @@
 package com.vrj.mysite.controller;
 
-import com.vrj.mysite.exceptions.IdiomFoundException;
 import com.vrj.mysite.exceptions.ImageFoundException;
 import com.vrj.mysite.model.Image;
 import com.vrj.mysite.services.ImageService;
@@ -28,7 +27,7 @@ public class ImageController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteImage(@PathVariable Long id){
+    public ResponseEntity<String> deleteImage(@PathVariable Long id) {
         imageService.deleteImage(id);
         return ResponseEntity.status(HttpStatus.OK).body("The image has been successfully removed.");
     }

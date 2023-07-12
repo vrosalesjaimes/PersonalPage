@@ -22,7 +22,7 @@ public class AuthorServiceImpl implements AuthorService {
     public ResponseEntity<Author> createAuthor(Author author) throws AuthorFoundException {
         Optional<Author> localAuthor = this.authorRepository.findByName(author.getName());
 
-        if(localAuthor.isPresent())
+        if (localAuthor.isPresent())
             throw new AuthorFoundException();
 
         author = this.authorRepository.save(author);
@@ -34,7 +34,7 @@ public class AuthorServiceImpl implements AuthorService {
     public ResponseEntity<String> updateAuthor(Long id, Author author) throws AuthorNotFoundException {
         Optional<Author> localAuthor = this.authorRepository.findById(id);
 
-        if(localAuthor.isEmpty())
+        if (localAuthor.isEmpty())
             throw new AuthorNotFoundException();
 
         Author updatedAuthor = localAuthor.get().update(author);
@@ -45,7 +45,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public ResponseEntity<String> delete(Long id) {
-        if(this.authorRepository.existsById(id)){
+        if (this.authorRepository.existsById(id)) {
             authorRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body("Author successfully removed");
         }

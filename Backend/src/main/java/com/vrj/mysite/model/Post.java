@@ -41,14 +41,14 @@ public class Post {
     private Idiom idiom;
 
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Image.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinTable(name="post_image", joinColumns = @JoinColumn(name =  "post_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
+    @JoinTable(name = "post_image", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
     private Set<Image> images;
 
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Tag.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinTable(name="post_tag", joinColumns = @JoinColumn(name =  "post_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    @JoinTable(name = "post_tag", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags;
 
-    public Post update(Post post){
+    public Post update(Post post) {
         if (post.getTitle() != null)
             this.title = post.getTitle();
         if (post.getDescription() != null)
@@ -60,15 +60,15 @@ public class Post {
         return this;
     }
 
-    public void addImages(Set<Image> savedImages){
+    public void addImages(Set<Image> savedImages) {
         this.images.addAll(savedImages);
     }
-    
-    public void addTags(Set<Tag> savedTags){
+
+    public void addTags(Set<Tag> savedTags) {
         this.tags.addAll(savedTags);
     }
-    
-    public PostDTO toDTO(){
+
+    public PostDTO toDTO() {
         PostDTO postDTO = new PostDTO();
         postDTO.setTitle(this.getTitle());
         postDTO.setDescription(this.getDescription());

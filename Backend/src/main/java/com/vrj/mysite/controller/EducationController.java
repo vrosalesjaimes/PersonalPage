@@ -2,13 +2,10 @@ package com.vrj.mysite.controller;
 
 import com.vrj.mysite.exceptions.EducationFoundException;
 import com.vrj.mysite.exceptions.EducationNotFoundException;
-import com.vrj.mysite.exceptions.IdiomFoundException;
-import com.vrj.mysite.exceptions.ImageFoundException;
 import com.vrj.mysite.model.Education;
 import com.vrj.mysite.services.EducationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +20,7 @@ public class EducationController {
     private EducationService educationService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createEducation(@RequestBody Education education){
+    public ResponseEntity<?> createEducation(@RequestBody Education education) {
         try {
             return this.educationService.createEducation(education);
         } catch (EducationFoundException e) {
@@ -34,7 +31,7 @@ public class EducationController {
 
     @PutMapping("/update/{id}")
     private ResponseEntity<String> updateEducation(@PathVariable(value = "id") Long id,
-                                                   @RequestBody Education education){
+                                                   @RequestBody Education education) {
         try {
             return this.educationService.updateEducation(id, education);
         } catch (EducationNotFoundException e) {
@@ -44,12 +41,12 @@ public class EducationController {
     }
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<String> deleteEducation(@PathVariable(value = "id") Long id){
+    public ResponseEntity<String> deleteEducation(@PathVariable(value = "id") Long id) {
         return this.educationService.deleteEducation(id);
     }
 
     @GetMapping("/get-all-by-idiom/{id}")
-    public ResponseEntity<Set<Education>> getAllByIdiom(@PathVariable(value = "id") Long id){
+    public ResponseEntity<Set<Education>> getAllByIdiom(@PathVariable(value = "id") Long id) {
         return this.educationService.getAllByIdiom(id);
 
     }

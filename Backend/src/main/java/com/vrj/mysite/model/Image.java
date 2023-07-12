@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Data
@@ -21,7 +20,7 @@ public class Image {
     @NotBlank
     private String url;
 
-    public Image upload(Image image){
+    public Image upload(Image image) {
         this.url = image.getUrl();
         return this;
     }

@@ -70,7 +70,7 @@ public class AboutServiceImpl implements AboutService {
 
     @Override
     public ResponseEntity<String> deleteAbout(Long id) {
-        if (this.aboutRepository.existsById(id)){
+        if (this.aboutRepository.existsById(id)) {
             this.aboutRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.OK).body("About section successfully removed.");
         }
