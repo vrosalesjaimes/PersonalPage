@@ -11,7 +11,7 @@ import java.util.Set;
 public interface PostRepository extends JpaRepository<Post, Long> {
 
     public Optional<Post> findByTitleAndIdiom_id(String title, Long idiom_id);
-    public Set<Post> findAllByIdiom(Idiom idiom);
+    public Set<Post> findAllByIdiomId(Long idiomId);
     public Set<Post> findAllByTitleContainingIgnoreCaseAndIdiom_Id(String title, Long idiomId);
     public Set<Post> findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(String tagName, Long idiomId);
 
