@@ -39,4 +39,16 @@ public class WorkExperience {
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 
+    public WorkExperience update(WorkExperience workExperience){
+        if (workExperience.getTitle() != null)
+            this.title = workExperience.getTitle();
+        if (workExperience.getSite() != null)
+            this.site = workExperience.getSite();
+        if (workExperience.getInitiaiDate() != null)
+            this.initiaiDate = workExperience.getInitiaiDate();
+        if (workExperience.getFinalDate() != null)
+            this.finalDate = workExperience.getFinalDate();
+
+        return this;
+    }
 }

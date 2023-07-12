@@ -10,7 +10,7 @@ import java.util.Set;
 
 public interface WorkExperienceRepository extends JpaRepository<WorkExperience, Long> {
 
-    public Set<WorkExperience> findAllByIdiom(Idiom idiom);
+    public Set<WorkExperience> findAllByIdiom_id(Long idiomId);
 
     public Optional<WorkExperience> findByTitleAndIdiom_id(String title, Long idiom_id);
 }
