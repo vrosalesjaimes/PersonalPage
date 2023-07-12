@@ -1,5 +1,6 @@
 package com.vrj.mysite.services.impl;
 
+import com.vrj.mysite.dto.PostDTO;
 import com.vrj.mysite.exceptions.ImageFoundException;
 import com.vrj.mysite.exceptions.PostFoundException;
 import com.vrj.mysite.exceptions.PostNotFoundException;
@@ -22,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class PostServiceImpl implements PostService {
     
@@ -100,8 +102,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public ResponseEntity<Set<Post>> getAllByIdiomId(Long idiomId) {
-        return ResponseEntity.ok(this.postRepository.findAllByIdiomId(idiomId));
+    public ResponseEntity<Set<PostDTO>> getAllByIdiomId(Long idiomId) {
+        Set<Post> posts = this.postRepository.findAllByIdiomId(idiomId);
+        return ResponseEntity.ok(this.setPostToSetPostDTO(posts));
     }
 
     @Override
@@ -115,13 +118,15 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public ResponseEntity<Set<Post>> searchByNameAndIdiomId(String title, Long idiomId) {
-        return ResponseEntity.ok(this.postRepository.findAllByTitleContainingIgnoreCaseAndIdiom_Id(title, idiomId));
+    public ResponseEntity<Set<PostDTO>> searchByNameAndIdiomId(String title, Long idiomId) {
+        Set<Post> posts = this.postRepository.findAllByTitleContainingIgnoreCaseAndIdiom_Id(title, idiomId);
+        return ResponseEntity.ok(this.setPostToSetPostDTO(posts));
     }
 
     @Override
-    public ResponseEntity<Set<Post>> searchByTagNameAndIdiomId(String tagName, Long idiomId) {
-        return ResponseEntity.ok(this.postRepository.findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(tagName, idiomId));
+    public ResponseEntity<Set<PostDTO>> searchByTagNameAndIdiomId(String tagName, Long idiomId) {
+        Set<Post> posts = this.postRepository.findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(tagName, idiomId);
+        return ResponseEntity.ok(this.setPostToSetPostDTO(posts));
     }
 
     @Override
@@ -164,5 +169,11 @@ public class PostServiceImpl implements PostService {
         localPost.get().addTags(savedTag);
         this.postRepository.save(localPost.get());
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Tags have been successfully added");
+    }
+
+    public Set<PostDTO> setPostToSetPostDTO(Set<Post> posts){
+        return posts.stream()
+                .map(Post::toDTO)
+                .collect(Collectors.toSet());
     }
 }

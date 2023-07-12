@@ -1,5 +1,6 @@
 package com.vrj.mysite.services.impl;
 
+import com.vrj.mysite.dto.ScholarProjectDTO;
 import com.vrj.mysite.exceptions.*;
 import com.vrj.mysite.model.*;
 import com.vrj.mysite.repositories.*;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ScholarProjectServiceImpl implements ScholarProjectService {
     
@@ -126,20 +128,21 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
     }
 
     @Override
-    public ResponseEntity<Set<ScholarProject>> getAllByIdiom(Long idiom_id) {
-        return ResponseEntity.ok(this.scholarProjectRepository.findAllByIdiom_id(idiom_id));
+    public ResponseEntity<Set<ScholarProjectDTO>> getAllByIdiom(Long idiom_id) {
+        Set<ScholarProject> projects = this.scholarProjectRepository.findAllByIdiom_id(idiom_id);
+        return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
     }
 
     @Override
-    public ResponseEntity<Set<ScholarProject>> getByTitleAndIdiomId(String title, Long idiomId) {
-        return ResponseEntity.ok(this.scholarProjectRepository.findAllByTitleContainingIgnoreCaseAndIdiom_Id(title, idiomId));
-
+    public ResponseEntity<Set<ScholarProjectDTO>> getByTitleAndIdiomId(String title, Long idiomId) {
+        Set<ScholarProject> projects = this.scholarProjectRepository.findAllByTitleContainingIgnoreCaseAndIdiom_Id(title, idiomId);
+        return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
     }
 
     @Override
-    public ResponseEntity<Set<ScholarProject>> getByTagNameAndIdiomId(String tagNAme, Long idiomId) {
-        return ResponseEntity.ok(this.scholarProjectRepository.findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(tagNAme, idiomId));
-
+    public ResponseEntity<Set<ScholarProjectDTO>> getByTagNameAndIdiomId(String tagNAme, Long idiomId) {
+        Set<ScholarProject> projects = this.scholarProjectRepository.findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(tagNAme, idiomId);
+        return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
     }
 
     @Override
@@ -224,5 +227,11 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
         this.scholarProjectRepository.save(localProject.get());
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Images have been successfully added");
+    }
+
+    public Set<ScholarProjectDTO> setProjectToSetProjectDto(Set<ScholarProject> projects){
+        return  projects.stream()
+                .map(ScholarProject::toDTO)
+                .collect(Collectors.toSet());
     }
 }

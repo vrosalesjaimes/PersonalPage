@@ -1,5 +1,6 @@
 package com.vrj.mysite.services.impl;
 
+import com.vrj.mysite.dto.PersonalProjectDTO;
 import com.vrj.mysite.exceptions.*;
 import com.vrj.mysite.model.*;
 import com.vrj.mysite.repositories.*;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class PersonalProjectServiceImpl implements PersonalProjectService {
 
@@ -127,23 +129,27 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
     }
 
     @Override
-    public ResponseEntity<Set<PersonalProject>> getAllByIdiom(Long idiom_id) {
-        return ResponseEntity.ok(this.personalProjectRepository.findAllByIdiom_id(idiom_id));
+    public ResponseEntity<Set<PersonalProjectDTO>> getAllByIdiom(Long idiom_id) {
+        Set<PersonalProject> projects = this.personalProjectRepository.findAllByIdiom_id(idiom_id);
+        return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
     }
 
     @Override
-    public ResponseEntity<Set<PersonalProject>> getByTitleAndIdiomId(String title, Long idiomId) {
-        return ResponseEntity.ok(this.personalProjectRepository.findAllByTitleContainingIgnoreCaseAndIdiom_Id(title, idiomId));
+    public ResponseEntity<Set<PersonalProjectDTO>> getByTitleAndIdiomId(String title, Long idiomId) {
+        Set<PersonalProject> projects = this.personalProjectRepository.findAllByTitleContainingIgnoreCaseAndIdiom_Id(title, idiomId);
+        return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
     }
 
     @Override
-    public ResponseEntity<Set<PersonalProject>> getByTagNameAndIdiomId(String tagNAme, Long idiomId) {
-        return ResponseEntity.ok(this.personalProjectRepository.findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(tagNAme, idiomId));
+    public ResponseEntity<Set<PersonalProjectDTO>> getByTagNameAndIdiomId(String tagNAme, Long idiomId) {
+        Set<PersonalProject> projects = this.personalProjectRepository.findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(tagNAme, idiomId);
+        return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
     }
 
     @Override
-    public ResponseEntity<Set<PersonalProject>> getByAuthorNameAndIdiomId(String authorName, Long idiomId) {
-        return ResponseEntity.ok(this.personalProjectRepository.findAllByAuthors_NameContainingIgnoreCaseAndIdiom_Id(authorName, idiomId));
+    public ResponseEntity<Set<PersonalProjectDTO>> getByAuthorNameAndIdiomId(String authorName, Long idiomId) {
+        Set<PersonalProject> projects = this.personalProjectRepository.findAllByAuthors_NameContainingIgnoreCaseAndIdiom_Id(authorName, idiomId);
+        return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
     }
 
     @Override
@@ -228,5 +234,11 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
         this.personalProjectRepository.save(localProject.get());
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Images have been successfully added");
+    }
+
+    public Set<PersonalProjectDTO> setProjectToSetProjectDto(Set<PersonalProject> projects){
+        return  projects.stream()
+                .map(PersonalProject::toDTO)
+                .collect(Collectors.toSet());
     }
 }
