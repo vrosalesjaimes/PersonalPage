@@ -29,7 +29,7 @@ public class About {
     @JoinColumn(name = "idiom_id")
     private Idiom idiom;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Image.class, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Image.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinTable(name = "about_image", joinColumns = @JoinColumn(name = "about_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
     private Set<Image> images;
 
