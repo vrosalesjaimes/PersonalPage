@@ -23,10 +23,6 @@ public class Tag {
     @NotBlank
     private String description;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumn(name = "idiom_id")
-    private Idiom idiom;
-
     public Tag update(Tag tag) {
 
         if (tag.getName() != null)

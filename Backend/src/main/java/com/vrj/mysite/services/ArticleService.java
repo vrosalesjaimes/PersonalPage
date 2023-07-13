@@ -23,7 +23,7 @@ public interface ArticleService {
 
     ResponseEntity<String> addReferences(Long id, Set<Reference> references) throws ArticleNotFoundException;
 
-    ResponseEntity<String> addTags(Long id, Set<Tag> tags) throws ArticleNotFoundException;
+    ResponseEntity<String> addTags(Long id ,Set<Tag> tags) throws ArticleNotFoundException;
 
     ResponseEntity<Set<ArticleDTO>> getAllForCards(Long idiomId);
 

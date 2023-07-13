@@ -29,15 +29,6 @@ public class TagServiceImpl implements TagService {
         if (localTag.isPresent())
             throw new TagFoundException();
 
-        Optional<Idiom> localIdiom = idiomRepository.findByName(tag.getIdiom().getName());
-        Idiom idiom;
-        if (localIdiom.isPresent())
-            idiom = localIdiom.get();
-        else
-            idiom = idiomRepository.save(tag.getIdiom());
-
-        tag.setIdiom(idiom);
-
         tag = tagRepository.save(tag);
 
         return ResponseEntity.ok(tag);
