@@ -19,7 +19,7 @@ public class EducationController {
     @Autowired
     private EducationService educationService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<?> createEducation(@RequestBody Education education) {
         try {
             return educationService.createEducation(education);

@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -35,9 +36,33 @@ public class SecurityConfig {
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
         return httpSecurity
-                .csrf(config -> config.disable())
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/users/create-user").permitAll();
+                    auth.requestMatchers("/articles/{id-idiom}/card-view").permitAll();
+                    auth.requestMatchers("/articles/{id}").permitAll();
+                    auth.requestMatchers("/articles/search/title/{idiom-id}").permitAll();
+                    auth.requestMatchers("/articles/search/authorName/{idiom-id}").permitAll();
+                    auth.requestMatchers("/articles/search/tagName/{idiom-id}").permitAll();
+                    auth.requestMatchers("/about/get/{idiom-id}").permitAll();
+                    auth.requestMatchers("/certifications/{idiom-id}/all-by-idiom").permitAll();
+                    auth.requestMatchers("/certifications/search/title/{idiom-id}").permitAll();
+                    auth.requestMatchers("/certifications/search/tagName/{idiom-id}").permitAll();
+                    auth.requestMatchers("/educations/idiom/{id}").permitAll();
+                    auth.requestMatchers("/personal-projects/{id}").permitAll();
+                    auth.requestMatchers("/personal-projects/by-idiom/{idiomId}").permitAll();
+                    auth.requestMatchers("/personal-projects/search/title").permitAll();
+                    auth.requestMatchers("/personal-projects/search/tag").permitAll();
+                    auth.requestMatchers("/personal-projects/search/author").permitAll();
+                    auth.requestMatchers("/posts/{id}").permitAll();
+                    auth.requestMatchers("/posts/by-idiom/{idiomId}").permitAll();
+                    auth.requestMatchers("/posts/search/title").permitAll();
+                    auth.requestMatchers("/posts/search/tag").permitAll();
+                    auth.requestMatchers("/scholar-projects/{id}").permitAll();
+                    auth.requestMatchers("/scholar-projects/by-idiom/{idiomId}").permitAll();
+                    auth.requestMatchers("/scholar-projects/search/title").permitAll();
+                    auth.requestMatchers("/scholar-projects/search/tag").permitAll();
+                    auth.requestMatchers("/work-experiences/by-idiom/{idiomId}").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .sessionManagement(session -> {
