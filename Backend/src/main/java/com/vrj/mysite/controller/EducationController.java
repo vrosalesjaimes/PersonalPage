@@ -12,42 +12,38 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/education")
+@RequestMapping("/educations")
 @CrossOrigin("*")
 public class EducationController {
 
     @Autowired
     private EducationService educationService;
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<?> createEducation(@RequestBody Education education) {
         try {
-            return this.educationService.createEducation(education);
+            return educationService.createEducation(education);
         } catch (EducationFoundException e) {
-            System.out.println("Education already exists.");
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Education already exists.");
         }
     }
 
-    @PutMapping("/update/{id}")
-    private ResponseEntity<String> updateEducation(@PathVariable(value = "id") Long id,
-                                                   @RequestBody Education education) {
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateEducation(@PathVariable("id") Long id, @RequestBody Education education) {
         try {
-            return this.educationService.updateEducation(id, education);
+            return educationService.updateEducation(id, education);
         } catch (EducationNotFoundException e) {
-            System.out.println("Image already exist.");
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Image already exist.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Education not found.");
         }
     }
 
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<String> deleteEducation(@PathVariable(value = "id") Long id) {
-        return this.educationService.deleteEducation(id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteEducation(@PathVariable("id") Long id) {
+        return educationService.deleteEducation(id);
     }
 
-    @GetMapping("/get-all-by-idiom/{id}")
-    public ResponseEntity<Set<Education>> getAllByIdiom(@PathVariable(value = "id") Long id) {
-        return this.educationService.getAllByIdiom(id);
-
+    @GetMapping("/idiom/{id}")
+    public ResponseEntity<Set<Education>> getAllByLanguage(@PathVariable("id") Long id) {
+        return educationService.getAllByIdiom(id);
     }
 }
