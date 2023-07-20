@@ -4,13 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadProtectorComponent } from './load-protector/load-protector.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoadProtectorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
