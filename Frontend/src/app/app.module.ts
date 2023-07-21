@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadProtectorComponent } from './components/load-protector/load-protector.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { LoadProtectorComponent } from './components/load-protector/load-protect
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
