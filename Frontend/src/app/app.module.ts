@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { LoadProtectorComponent } from './load-protector/load-protector.component';
+import { LoadProtectorComponent } from './components/load-protector/load-protector.component';
 
 @NgModule({
   declarations: [
