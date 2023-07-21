@@ -10,7 +10,7 @@ import { LoadProtectorComponent } from './load-protector/load-protector.componen
 @NgModule({
   declarations: [
     AppComponent,
-    LoadProtectorComponent
+    LoadProtectorComponent,
   ],
   imports: [
     BrowserModule,
