@@ -34,9 +34,9 @@ export class LoadProtectorComponent implements OnInit{
 
   hideLoader() {
     const protector = document.querySelector('.protector') as HTMLElement;
-    protector.classList.add('hide'); // Aplica la clase .hide para desvanecer gradualmente el protector de carga
+    protector.classList.add('hide');
     setTimeout(() => {
       this.loading = false;
-    }, 4000); // Esperar 500 ms (0.5 segundos) antes de establecer loading a false
+    }, 4000); 
   }
 }
