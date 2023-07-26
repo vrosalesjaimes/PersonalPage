@@ -1,0 +1,339 @@
+@use '@angular/material' as mat;
+
+mat.$theme-ignore-duplication-warnings: true;
+
+@include mat.core();
+
+$primary-palette: (
+    50 : #e3e4e4,
+    100 : #b9bcbb,
+    200 : #8a8f8e,
+    300 : #5b6261,
+    400 : #37403f,
+    500 : #141e1d,
+    600 : #121a1a,
+    700 : #0e1615,
+    800 : #0b1211,
+    900 : #060a0a,
+    A100 : #50ffff,
+    A200 : #1dffff,
+    A400 : #00e9e9,
+    A700 : #00d0d0,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$second-palette: (
+    50 : #e9ecec,
+    100 : #c7cfd0,
+    200 : #a2b0b1,
+    300 : #7c9092,
+    400 : #60787a,
+    500 : #446063,
+    600 : #3e585b,
+    700 : #354e51,
+    800 : #2d4447,
+    900 : #1f3335,
+    A100 : #7cf2ff,
+    A200 : #49edff,
+    A400 : #16e8ff,
+    A700 : #00e2fc,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$warn-palette: (
+    50 : #fff9e0,
+    100 : #fff0b3,
+    200 : #ffe680,
+    300 : #ffdb4d,
+    400 : #ffd426,
+    500 : #ffcc00,
+    600 : #ffc700,
+    700 : #ffc000,
+    800 : #ffb900,
+    900 : #ffad00,
+    A100 : #ffffff,
+    A200 : #fffaf2,
+    A400 : #ffe8bf,
+    A700 : #ffdfa6,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$dark-background: (
+    50 : #e3e4e4,
+    100 : #b9bcbb,
+    200 : #8a8f8e,
+    300 : #5b6261,
+    400 : #37403f,
+    500 : #141e1d,
+    600 : #121a1a,
+    700 : #0e1615,
+    800 : #0b1211,
+    900 : #060a0a,
+    A100 : #50ffff,
+    A200 : #1dffff,
+    A400 : #00e9e9,
+    A700 : #00d0d0,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$light-background: (
+    50 : #f9fafb,
+    100 : #f0f2f5,
+    200 : #e6eaee,
+    300 : #dbe1e7,
+    400 : #d4dae2,
+    500 : #ccd4dd,
+    600 : #c7cfd9,
+    700 : #c0c9d4,
+    800 : #b9c3cf,
+    900 : #adb9c7,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #fafcff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$light-foreground: (
+    50 : #e0e0e0,
+    100 : #b3b3b3,
+    200 : #808080,
+    300 : #4d4d4d,
+    400 : #262626,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #a6a6a6,
+    A200 : #8c8c8c,
+    A400 : #737373,
+    A700 : #666666,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$dark-foreground: (
+    50 : #ffffff,
+    100 : #ffffff,
+    200 : #ffffff,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+$primary-color: mat.define-palette($primary-palette);
+$accent-color: mat.define-palette($second-palette);
+$warn-color: mat.define-palette($warn-palette);
+
+$light-theme: mat.define-light-theme((
+    color: (
+        primary: $primary-color,
+        accent: $accent-color,
+        warn: $warn-color, 
+    ),
+    background: (
+        status-bar: $light-background,
+        app-bar: $light-background,
+        background: $light-background,
+        hover: $light-background,
+        card: $light-background,
+        dialog: $light-background,
+        disabled-button: $light-background,
+        raised-button: $light-background,
+        focused-button: $light-background,
+        selected-button: $light-background,
+        selected-disabled-button: $light-background,
+        disabled-button-toggle: $light-background,
+        unselected-chip: $light-background,
+        disabled-list-option: $light-background,
+    ),
+    foreground: (
+        base: $light-foreground,
+        divider: $light-foreground,
+        dividers: $light-foreground,
+        disabled: $light-foreground,
+        disabled-button: $light-foreground,
+        disabled-text: $light-foreground,
+        elevation: $light-foreground,
+        hint-text: $light-foreground,
+        secondary-text: $light-foreground,
+        icon: $light-foreground,
+        icons: $light-foreground,
+        text: $light-foreground,
+        slider-min: $light-foreground,
+        slider-off: $light-foreground,
+        slider-off-active: $light-foreground,
+    )
+));
+
+
+$dark-theme: mat.define-dark-theme((
+    color: (
+        primary: $primary-color,
+        accent: $accent-color,
+        warn: $warn-color, 
+    ),
+    background: (
+        status-bar: $dark-background,
+        app-bar: $dark-background,
+        background: $dark-background,
+        hover: $dark-background,
+        card: $dark-background,
+        dialog: $dark-background,
+        disabled-button: $dark-background,
+        raised-button: $dark-background,
+        focused-button: $dark-background,
+        selected-button: $dark-background,
+        selected-disabled-button: $dark-background,
+        disabled-button-toggle: $dark-background,
+        unselected-chip: $dark-background,
+        disabled-list-option: $dark-background,
+    ),
+    foreground: (
+        base: $dark-foreground,
+        divider: $dark-foreground,
+        dividers: $dark-foreground,
+        disabled: $dark-foreground,
+        disabled-button: $dark-foreground,
+        disabled-text: $dark-foreground,
+        elevation: $dark-foreground,
+        hint-text: $dark-foreground,
+        secondary-text: $dark-foreground,
+        icon: $dark-foreground,
+        icons: $dark-foreground,
+        text: $dark-foreground,
+        slider-min: $dark-foreground,
+        slider-off: $dark-foreground,
+        slider-off-active: $dark-foreground,
+    )
+));
+
+.light-theme{
+    @include mat.core-theme($light-theme);
+    @include mat.all-component-themes($light-theme);
+    @include mat.all-component-colors($light-theme);
+    @include mat.strong-focus-indicators-theme($light-theme);
+}
+
+.dark-theme{
+    @include mat.core-theme($dark-theme);
+    @include mat.all-component-themes($dark-theme);
+    @include mat.all-component-colors($dark-theme); 
+    @include mat.strong-focus-indicators-theme($dark-theme);
+}

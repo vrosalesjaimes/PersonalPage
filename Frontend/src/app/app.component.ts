@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Frontend';
+
+  @HostBinding('class') componentCssClass: any;
+
+  constructor(@Inject(DOCUMENT) private document: Document) {}
+
+  setTheme(theme: string) {
+    this.componentCssClass = theme;
+    this.document.body.classList.forEach((className) => {
+      if (className.includes('-theme')) {
+        this.document.body.classList.remove(className);
+      }
+    });
+    this.document.body.classList.add(theme);
+  }
 }
