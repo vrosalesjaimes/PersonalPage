@@ -9,12 +9,19 @@ import { LoadProtectorComponent } from './components/load-protector/load-protect
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ThemeTogglerComponent } from './components/theme-toggler/theme-toggler.component';
+import { NavbarComponent } from './components/client/navbar/navbar.component';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { LogoComponent } from './components/logo/logo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoadProtectorComponent,
     ThemeTogglerComponent,
+    NavbarComponent,
+    LogoComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,6 +29,9 @@ import { ThemeTogglerComponent } from './components/theme-toggler/theme-toggler.
     NgxSpinnerModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
+    MatListModule,
+    MatIconModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

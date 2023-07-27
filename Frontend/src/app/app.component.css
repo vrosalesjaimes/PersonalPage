@@ -1,3 +1,4 @@
-app-theme-toggler{
+mat-sidenav{
     border: solid red 1px;
+    visibility: visible !important;
 }
