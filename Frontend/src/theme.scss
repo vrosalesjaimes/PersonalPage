@@ -324,16 +324,24 @@ $dark-theme: mat.define-dark-theme((
     )
 ));
 
-.light-theme{
+.light-theme {
     @include mat.core-theme($light-theme);
     @include mat.all-component-themes($light-theme);
     @include mat.all-component-colors($light-theme);
     @include mat.strong-focus-indicators-theme($light-theme);
 }
 
-.dark-theme{
+.dark-theme {
     @include mat.core-theme($dark-theme);
     @include mat.all-component-themes($dark-theme);
     @include mat.all-component-colors($dark-theme); 
     @include mat.strong-focus-indicators-theme($dark-theme);
+}
+
+body.light-theme {
+  background: #CCD4DD;
+}
+
+body.dark-theme {
+  background: #141E1D;
 }

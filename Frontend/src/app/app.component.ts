@@ -1,5 +1,5 @@
 import { Component, HostBinding, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { ThemeService } from './service/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +9,10 @@ import { DOCUMENT } from '@angular/common';
 export class AppComponent {
   title = 'Frontend';
 
-  @HostBinding('class') componentCssClass: any;
-
-  constructor(@Inject(DOCUMENT) private document: Document) {}
-
-  setTheme(theme: string) {
-    this.componentCssClass = theme;
-    this.document.body.classList.forEach((className) => {
-      if (className.includes('-theme')) {
-        this.document.body.classList.remove(className);
-      }
+  constructor(private themeService: ThemeService) {
+    this.themeService.getTheme().subscribe(isDarkTheme => {
+      const theme = isDarkTheme ? 'dark-theme' : 'light-theme';
+      document.body.className = theme;
     });
-    this.document.body.classList.add(theme);
   }
 }
