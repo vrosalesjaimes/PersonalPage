@@ -13,6 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { LogoComponent } from './components/logo/logo.component';
+import { HomeComponent } from './components/client/home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LogoComponent } from './components/logo/logo.component';
     LoadProtectorComponent,
     NavbarComponent,
     LogoComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
