@@ -8,7 +8,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadProtectorComponent } from './components/load-protector/load-protector.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { ThemeTogglerComponent } from './components/theme-toggler/theme-toggler.component';
 import { NavbarComponent } from './components/client/navbar/navbar.component';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,7 +18,6 @@ import { LogoComponent } from './components/logo/logo.component';
   declarations: [
     AppComponent,
     LoadProtectorComponent,
-    ThemeTogglerComponent,
     NavbarComponent,
     LogoComponent,
   ],

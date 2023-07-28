@@ -1,5 +1,4 @@
 import { Component, HostBinding, Inject } from '@angular/core';
-import { ThemeService } from './service/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +7,4 @@ import { ThemeService } from './service/theme.service';
 })
 export class AppComponent {
   title = 'Frontend';
-
-  constructor(private themeService: ThemeService) {
-    this.themeService.getTheme().subscribe(isDarkTheme => {
-      const theme = isDarkTheme ? 'dark-theme' : 'light-theme';
-      document.body.className = theme;
-    });
-  }
 }
