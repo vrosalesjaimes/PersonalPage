@@ -340,8 +340,10 @@ $dark-theme: mat.define-dark-theme((
 
 body.light-theme {
   background: #CCD4DD;
+  color: #000000;
 }
 
 body.dark-theme {
   background: #141E1D;
+  color: #CCD4DD;
 }

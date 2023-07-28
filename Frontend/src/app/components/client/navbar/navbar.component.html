@@ -1,0 +1,19 @@
+<header class="header_menu">
+    <app-logo></app-logo>
+    <div class="hamburger" (click)="toggleNavbar()">
+        <mat-icon class="mat-18">menu</mat-icon>
+    </div>
+    <nav class="nav-bar"  [ngClass]="{'active': isNavbarActive}">
+        <ul>
+            <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+            <li><a routerLink="/articles" routerLinkActive="active">Articles</a></li>
+            <li><a routerLink="/certifications" routerLinkActive="active">Certifications</a></li>
+            <li><a routerLink="/formation" routerLinkActive="active">Formation</a></li>
+            <li><a routerLink="/portfolio" routerLinkActive="active">Portfolio</a></li>
+            <li><a routerLink="/posts" routerLinkActive="active">Posts</a></li>
+            <li><a routerLink="/school-project" routerLinkActive="active">School Project</a></li>
+            <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+        </ul>
+    </nav>
+
+</header>
