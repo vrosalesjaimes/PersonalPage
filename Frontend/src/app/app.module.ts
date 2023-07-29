@@ -14,6 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { LogoComponent } from './components/logo/logo.component';
 import { HomeComponent } from './components/client/home/home.component';
+import {MatButtonModule} from '@angular/material/button';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { HomeComponent } from './components/client/home/home.component';
     MatSlideToggleModule,
     MatListModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatButtonModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
