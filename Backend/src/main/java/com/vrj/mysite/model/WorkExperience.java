@@ -35,10 +35,6 @@ public class WorkExperience {
     @NotBlank
     private String activities;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumn(name = "idiom_id")
-    private Idiom idiom;
-
     public WorkExperience update(WorkExperience workExperience) {
         if (workExperience.getTitle() != null)
             this.title = workExperience.getTitle();

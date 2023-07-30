@@ -32,10 +32,6 @@ public class Education {
 
     private Date finalDate;
 
-    @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "idiom_id")
-    private Idiom idiom;
-
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "image_id")
     private Image image;

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -24,8 +25,6 @@ public class ArticleServiceImpl implements ArticleService {
     private AuthorRepository authorRepository;
     @Autowired
     private AuthorService authorService;
-    @Autowired
-    private IdiomRepository idiomRepository;
     @Autowired
     private ImageRepository imageRepository;
     @Autowired
@@ -85,12 +84,6 @@ public class ArticleServiceImpl implements ArticleService {
             }
         }
         article.setTags(savedTag);
-
-        Optional<Idiom> idiom = this.idiomRepository.findById(article.getIdiom().getId());
-        if (idiom.isPresent())
-            article.setIdiom(idiom.get());
-        else
-            article.setIdiom(this.idiomRepository.save(article.getIdiom()));
 
         article = this.articleRepository.save(article);
         return ResponseEntity.ok(article);
@@ -203,9 +196,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public ResponseEntity<Set<ArticleDTO>> getAllForCards(Long idiomId) {
-        Set<Article> localArticles = this.articleRepository.findAllByIdiom_id(idiomId);
-        return ResponseEntity.ok(this.setArticleToSetArticleDto(localArticles));
+    public ResponseEntity<List<Article>> getAllForCards() {
+        List<Article> localArticles = this.articleRepository.findAll();
+        return ResponseEntity.ok(localArticles);
     }
 
     @Override
@@ -219,20 +212,20 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public ResponseEntity<Set<ArticleDTO>> searchByTitleAndIdiom(String title, Long idiomId) {
-        Set<Article> localArticles = this.articleRepository.findAllByTitleContainingIgnoreCaseAndIdiom_Id(title, idiomId);
+    public ResponseEntity<Set<ArticleDTO>> searchByTitle(String title) {
+        Set<Article> localArticles = this.articleRepository.findAllByTitleContainingIgnoreCase(title);
         return ResponseEntity.ok(this.setArticleToSetArticleDto(localArticles));
     }
 
     @Override
-    public ResponseEntity<Set<ArticleDTO>> searchByNameAuthorAndIdIdiom(String authorName, Long idIdiom) {
-        Set<Article> articles = this.articleRepository.findAllByAuthors_NameContainingIgnoreCaseAndIdiom_Id(authorName, idIdiom);
+    public ResponseEntity<Set<ArticleDTO>> searchByNameAuthor(String authorName) {
+        Set<Article> articles = this.articleRepository.findAllByAuthors_NameContainingIgnoreCase(authorName);
         return ResponseEntity.ok(this.setArticleToSetArticleDto(articles));
     }
 
     @Override
-    public ResponseEntity<Set<ArticleDTO>> searchByTagNameAndIdiomId(String tagName, Long id) {
-        Set<Article> articles = this.articleRepository.findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(tagName, id);
+    public ResponseEntity<Set<ArticleDTO>> searchByTagName(String tagName) {
+        Set<Article> articles = this.articleRepository.findAllByTags_NameContainingIgnoreCase(tagName);
         return ResponseEntity.ok(this.setArticleToSetArticleDto(articles));
     }
 

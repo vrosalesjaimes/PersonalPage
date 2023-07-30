@@ -6,7 +6,6 @@ import com.vrj.mysite.model.Education;
 import com.vrj.mysite.model.Idiom;
 import com.vrj.mysite.model.Image;
 import com.vrj.mysite.repositories.EducationRepository;
-import com.vrj.mysite.repositories.IdiomRepository;
 import com.vrj.mysite.repositories.ImageRepository;
 import com.vrj.mysite.services.EducationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +21,6 @@ public class EducationServiceImpl implements EducationService {
 
     @Autowired
     private EducationRepository educationRepository;
-    @Autowired
-    private IdiomRepository idiomRepository;
     @Autowired
     private ImageRepository imageRepository;
 

@@ -6,6 +6,7 @@ import com.vrj.mysite.exceptions.ArticleNotFoundException;
 import com.vrj.mysite.model.*;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -25,14 +26,14 @@ public interface ArticleService {
 
     ResponseEntity<String> addTags(Long id ,Set<Tag> tags) throws ArticleNotFoundException;
 
-    ResponseEntity<Set<ArticleDTO>> getAllForCards(Long idiomId);
+    ResponseEntity<List<Article>> getAllForCards();
 
     ResponseEntity<Article> getArticle(Long id) throws ArticleNotFoundException;
 
-    ResponseEntity<Set<ArticleDTO>> searchByTitleAndIdiom(String title, Long idiomId);
+    ResponseEntity<Set<ArticleDTO>> searchByTitle(String title);
 
-    ResponseEntity<Set<ArticleDTO>> searchByNameAuthorAndIdIdiom(String authorName, Long idIdiom);
+    ResponseEntity<Set<ArticleDTO>> searchByNameAuthor(String authorName);
 
-    ResponseEntity<Set<ArticleDTO>> searchByTagNameAndIdiomId(String tagName, Long id);
+    ResponseEntity<Set<ArticleDTO>> searchByTagName(String tagName);
 
 }

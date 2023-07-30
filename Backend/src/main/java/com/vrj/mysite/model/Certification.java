@@ -33,10 +33,6 @@ public class Certification {
     @NotBlank
     private String certificationUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "idiom_id")
-    private Idiom idiom;
-
     @OneToOne
     @JoinColumn(name = "image_id")
     private Image image;

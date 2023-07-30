@@ -9,7 +9,6 @@ import com.vrj.mysite.model.Idiom;
 import com.vrj.mysite.model.Image;
 import com.vrj.mysite.model.Post;
 import com.vrj.mysite.model.Tag;
-import com.vrj.mysite.repositories.IdiomRepository;
 import com.vrj.mysite.repositories.ImageRepository;
 import com.vrj.mysite.repositories.PostRepository;
 import com.vrj.mysite.repositories.TagRepository;
@@ -31,8 +30,6 @@ public class PostServiceImpl implements PostService {
 
     @Autowired
     private PostRepository postRepository;
-    @Autowired
-    private IdiomRepository idiomRepository;
     @Autowired
     private ImageService imageService;
     @Autowired

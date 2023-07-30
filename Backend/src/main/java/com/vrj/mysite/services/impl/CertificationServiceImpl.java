@@ -7,7 +7,6 @@ import com.vrj.mysite.model.Certification;
 import com.vrj.mysite.model.Idiom;
 import com.vrj.mysite.model.Tag;
 import com.vrj.mysite.repositories.CertificationRepository;
-import com.vrj.mysite.repositories.IdiomRepository;
 import com.vrj.mysite.repositories.TagRepository;
 import com.vrj.mysite.services.CertificationService;
 import com.vrj.mysite.services.TagService;
@@ -25,8 +24,6 @@ public class CertificationServiceImpl implements CertificationService {
 
     @Autowired
     private CertificationRepository certificationRepository;
-    @Autowired
-    private IdiomRepository idiomRepository;
     @Autowired
     private TagRepository tagRepository;
     @Autowired

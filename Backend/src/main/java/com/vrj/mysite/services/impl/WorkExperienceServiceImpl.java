@@ -3,9 +3,7 @@ package com.vrj.mysite.services.impl;
 import com.vrj.mysite.exceptions.WorkExperienceNotFoundException;
 import com.vrj.mysite.model.Idiom;
 import com.vrj.mysite.model.WorkExperience;
-import com.vrj.mysite.repositories.IdiomRepository;
 import com.vrj.mysite.repositories.WorkExperienceRepository;
-import com.vrj.mysite.services.IdiomService;
 import com.vrj.mysite.services.WorkExperienceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,10 +18,6 @@ public class WorkExperienceServiceImpl implements WorkExperienceService {
 
     @Autowired
     private WorkExperienceRepository workExperienceRepository;
-    @Autowired
-    private IdiomService idiomService;
-    @Autowired
-    private IdiomRepository idiomRepository;
 
     @Override
     public ResponseEntity<WorkExperience> createWorkExperience(WorkExperience workExperience) {

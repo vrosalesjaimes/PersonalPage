@@ -2,9 +2,7 @@ package com.vrj.mysite.services.impl;
 
 import com.vrj.mysite.exceptions.TagFoundException;
 import com.vrj.mysite.exceptions.TagNotFoundException;
-import com.vrj.mysite.model.Idiom;
 import com.vrj.mysite.model.Tag;
-import com.vrj.mysite.repositories.IdiomRepository;
 import com.vrj.mysite.repositories.TagRepository;
 import com.vrj.mysite.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +17,6 @@ public class TagServiceImpl implements TagService {
 
     @Autowired
     private TagRepository tagRepository;
-    @Autowired
-    private IdiomRepository idiomRepository;
 
     @Override
     public ResponseEntity<Tag> createTag(Tag tag) throws TagFoundException {

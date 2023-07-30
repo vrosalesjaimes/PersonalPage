@@ -36,10 +36,6 @@ public class Post {
     @NotBlank
     private String content;
 
-    @OneToOne
-    @JoinColumn(name = "idiom_id")
-    private Idiom idiom;
-
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Image.class, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinTable(name = "post_image", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
     private Set<Image> images;

@@ -25,8 +25,6 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
     @Autowired
     private AuthorService authorService;
     @Autowired
-    private IdiomRepository idiomRepository;
-    @Autowired
     private ImageRepository imageRepository;
     @Autowired
     private ImageService imageService;

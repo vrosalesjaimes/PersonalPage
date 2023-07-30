@@ -5,7 +5,6 @@ import com.vrj.mysite.model.About;
 import com.vrj.mysite.model.Idiom;
 import com.vrj.mysite.model.Image;
 import com.vrj.mysite.repositories.AboutRepository;
-import com.vrj.mysite.repositories.IdiomRepository;
 import com.vrj.mysite.repositories.ImageRepository;
 import com.vrj.mysite.services.AboutService;
 import com.vrj.mysite.services.ImageService;
@@ -23,8 +22,6 @@ public class AboutServiceImpl implements AboutService {
 
     @Autowired
     private AboutRepository aboutRepository;
-    @Autowired
-    private IdiomRepository idiomRepository;
     @Autowired
     private ImageRepository imageRepository;
     @Autowired

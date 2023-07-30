@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -84,9 +85,9 @@ public class ArticleController {
         }
     }
 
-    @GetMapping("/{id-idiom}/card-view")
-    public ResponseEntity<Set<ArticleDTO>> getAllForCards(@PathVariable(value = "idiom-id") Long idiomId){
-        return this.articleService.getAllForCards(idiomId);
+    @GetMapping("/card-view")
+    public ResponseEntity<List<Article>> getAllForCards(){
+        return this.articleService.getAllForCards();
     }
 
     @GetMapping("/{id}")
@@ -98,21 +99,18 @@ public class ArticleController {
         }
     }
 
-    @GetMapping("/search/title/{idiom-id}")
-    public ResponseEntity<Set<ArticleDTO>> searchByTitleAndIdiom(@PathVariable(value = "idiom-id") Long idiomId,
-                                                                 @RequestParam("title") String title){
-        return this.articleService.searchByTitleAndIdiom(title,idiomId);
+    @GetMapping("/search/title")
+    public ResponseEntity<Set<ArticleDTO>> searchByTitleAndIdiom(@RequestParam("title") String title){
+        return this.articleService.searchByTitle(title);
     }
 
-    @GetMapping("/search/authorName/{idiom-id}")
-    private ResponseEntity<Set<ArticleDTO>> searchByAuthorNameAndIdiomId(@PathVariable(value = "idiom-id") Long idiomId,
-                                                                         @RequestParam("authorName") String authorName){
-        return this.articleService.searchByNameAuthorAndIdIdiom(authorName, idiomId);
+    @GetMapping("/search/authorName")
+    private ResponseEntity<Set<ArticleDTO>> searchByAuthorNameAndIdiomId(@RequestParam("authorName") String authorName){
+        return this.articleService.searchByNameAuthor(authorName);
     }
 
-    @GetMapping("/search/tagName/{idiom-id}")
-    private ResponseEntity<Set<ArticleDTO>> searchByTagNameAndIdiomId(@RequestParam("tagName") String tagName,
-                                                                      @PathVariable(value = "idiom-id") Long idiomId){
-        return  this.articleService.searchByTagNameAndIdiomId(tagName, idiomId);
+    @GetMapping("/search/tagName")
+    private ResponseEntity<Set<ArticleDTO>> searchByTagNameAndIdiomId(@RequestParam("tagName") String tagName){
+        return  this.articleService.searchByTagName(tagName);
     }
 }
