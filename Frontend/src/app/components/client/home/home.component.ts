@@ -67,10 +67,12 @@ export class HomeComponent implements  OnInit {
     if (allContentElement) {
       console.log(allContentElement)
       this.renderer.addClass(allContentElement, 'show-content');
+
+      allContentElement.addEventListener('transitionend', () => {
+        homeElement?.style.setProperty('display', 'none');
+      });
+  
       allContentElement.scrollIntoView({ behavior: 'smooth' });
-      homeElement?.style.setProperty('display', 'none');
-    } else{
-      console.log('No se encontro el elemento')
     }
   }
   
