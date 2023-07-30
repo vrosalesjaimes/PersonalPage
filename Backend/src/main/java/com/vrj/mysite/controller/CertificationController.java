@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -20,11 +21,10 @@ public class CertificationController {
     @Autowired
     private CertificationService certificationService;
 
-    @PostMapping("/{idiom-id}/create")
-    public ResponseEntity<?> create(@PathVariable(value = "idiom-id") Long idiomId,
-                                    @RequestBody Certification certification){
+    @PostMapping("/create")
+    public ResponseEntity<?> create(@RequestBody Certification certification){
         try {
-            return this.certificationService.createCertification(idiomId, certification);
+            return this.certificationService.createCertification(certification);
         } catch (CertificationFoundException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Certification already exists.");
         }
@@ -45,21 +45,19 @@ public class CertificationController {
         return this.certificationService.delete(id);
     }
 
-    @GetMapping("/{idiom-id}/all-by-idiom")
-    public ResponseEntity<Set<Certification>> getAllByIdiom(@PathVariable(value = "idiom-id") Long idiomId){
-        return this.certificationService.getAllByIdiomId(idiomId);
+    @GetMapping("/all-by-idiom")
+    public ResponseEntity<List<Certification>> getAll(){
+        return this.certificationService.getAll();
     }
 
-    @GetMapping("/search/title/{idiom-id}")
-    public ResponseEntity<Set<Certification>> searchByTitleAndIdiomId(@PathVariable(value = "idiom-id") Long idiomId,
-                                                                      @RequestParam("title") String title){
-        return this.certificationService.searchByTitle(title, idiomId);
+    @GetMapping("/search/title")
+    public ResponseEntity<Set<Certification>> searchByTitle(@RequestParam("title") String title){
+        return this.certificationService.searchByTitle(title);
     }
 
-    @GetMapping("search/tagName/{idiom-id}")
-    public ResponseEntity<Set<Certification>> searchByTagNameAndIdiomId(@PathVariable(value = "idiom-id") Long idiomId,
-                                                                        @RequestParam("tagName") String tagName){
-        return this.certificationService.searchByTagAndIdiom(tagName, idiomId);
+    @GetMapping("search/tagName")
+    public ResponseEntity<Set<Certification>> searchByTagName(@RequestParam("tagName") String tagName){
+        return this.certificationService.searchByTag(tagName);
     }
 
     @PutMapping("/{id}/add-tags")

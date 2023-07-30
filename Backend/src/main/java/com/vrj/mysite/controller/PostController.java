@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -22,10 +23,9 @@ public class PostController {
     private PostService postService;
 
     @PostMapping("/create")
-    public ResponseEntity<Post> createPost(@RequestParam("idiomId") Long idiomId,
-                                           @RequestBody Post post) {
+    public ResponseEntity<Post> createPost(@RequestBody Post post) {
         try {
-            return postService.createPost(idiomId, post);
+            return postService.createPost(post);
         } catch (PostFoundException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
@@ -55,21 +55,19 @@ public class PostController {
         }
     }
 
-    @GetMapping("/by-idiom/{idiomId}")
-    public ResponseEntity<Set<PostDTO>> getPostsByLanguage(@PathVariable("idiomId") Long idiomId) {
-        return postService.getAllByIdiomId(idiomId);
+    @GetMapping("/")
+    public ResponseEntity<List<Post>> getAll() {
+        return postService.getAll();
     }
 
     @GetMapping("/search/title")
-    public ResponseEntity<Set<PostDTO>> searchPostsByTitleAndIdiom(@RequestParam("title") String title,
-                                                                   @RequestParam("idiomId") Long idiomId) {
-        return postService.searchByNameAndIdiomId(title, idiomId);
+    public ResponseEntity<Set<PostDTO>> searchPostsByTitle(@RequestParam("title") String title) {
+        return postService.searchByName(title);
     }
 
     @GetMapping("/search/tag")
-    public ResponseEntity<Set<PostDTO>> searchPostsByTagAndIdiom(@RequestParam("tagName") String tagName,
-                                                                 @RequestParam("idiomId") Long idiomId) {
-        return postService.searchByTagNameAndIdiomId(tagName, idiomId);
+    public ResponseEntity<Set<PostDTO>> searchPostsByTag(@RequestParam("tagName") String tagName) {
+        return postService.searchByTagName(tagName);
     }
 
     @PutMapping("/{id}/add-images")

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -37,8 +38,8 @@ public class WorkExperienceController {
         return workExperienceService.deleteWorkExperience(id);
     }
 
-    @GetMapping("/by-idiom/{idiomId}")
-    public ResponseEntity<Set<WorkExperience>> getWorkExperiencesByLanguage(@PathVariable("idiomId") Long idiomId) {
-        return workExperienceService.getAllByIdiomId(idiomId);
+    @GetMapping("/")
+    public ResponseEntity<List<WorkExperience>> getAll() {
+        return workExperienceService.getAll();
     }
 }

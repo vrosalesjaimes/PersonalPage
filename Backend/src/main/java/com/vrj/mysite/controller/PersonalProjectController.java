@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -19,10 +20,9 @@ public class PersonalProjectController {
     private PersonalProjectService personalProjectService;
 
     @PostMapping("/create")
-    public ResponseEntity<PersonalProject> createPersonalProject(@RequestParam("idiomId") Long idiomId,
-                                                                 @RequestBody PersonalProject personalProject) {
+    public ResponseEntity<PersonalProject> createPersonalProject(@RequestBody PersonalProject personalProject) {
         try {
-            return personalProjectService.createPersonalProject(idiomId, personalProject);
+            return personalProjectService.createPersonalProject(personalProject);
         } catch (PersonalProjectFoundException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
@@ -52,27 +52,24 @@ public class PersonalProjectController {
         }
     }
 
-    @GetMapping("/by-idiom/{idiomId}")
-    public ResponseEntity<Set<PersonalProjectDTO>> getPersonalProjectsByLanguage(@PathVariable("idiomId") Long idiomId) {
-        return personalProjectService.getAllByIdiom(idiomId);
+    @GetMapping("/")
+    public ResponseEntity<List<PersonalProject>> getAll() {
+        return personalProjectService.getAll();
     }
 
     @GetMapping("/search/title")
-    public ResponseEntity<Set<PersonalProjectDTO>> searchPersonalProjectsByTitleAndIdiom(@RequestParam("title") String title,
-                                                                                         @RequestParam("idiomId") Long idiomId) {
-        return personalProjectService.getByTitleAndIdiomId(title, idiomId);
+    public ResponseEntity<Set<PersonalProjectDTO>> searchPersonalProjectsByTitle(@RequestParam("title") String title) {
+        return personalProjectService.getByTitle(title);
     }
 
     @GetMapping("/search/tag")
-    public ResponseEntity<Set<PersonalProjectDTO>> searchPersonalProjectsByTagAndIdiom(@RequestParam("tagName") String tagName,
-                                                                                       @RequestParam("idiomId") Long idiomId) {
-        return personalProjectService.getByTagNameAndIdiomId(tagName, idiomId);
+    public ResponseEntity<Set<PersonalProjectDTO>> searchPersonalProjectsByTag(@RequestParam("tagName") String tagName) {
+        return personalProjectService.getByTagName(tagName);
     }
 
     @GetMapping("/search/author")
-    public ResponseEntity<Set<PersonalProjectDTO>> searchPersonalProjectsByAuthorAndIdiom(@RequestParam("authorName") String authorName,
-                                                                                          @RequestParam("idiomId") Long idiomId) {
-        return personalProjectService.getByAuthorNameAndIdiomId(authorName, idiomId);
+    public ResponseEntity<Set<PersonalProjectDTO>> searchPersonalProjectsByAuthor(@RequestParam("authorName") String authorName) {
+        return personalProjectService.getByAuthorName(authorName);
     }
 
     @PutMapping("/{id}/add-images")

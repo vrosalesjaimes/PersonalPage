@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -23,10 +24,9 @@ public class ScholarProjectController {
     private ScholarProjectService scholarProjectService;
 
     @PostMapping("/create")
-    public ResponseEntity<ScholarProject> createScholarProject(@RequestParam("idiomId") Long idiomId,
-                                                               @RequestBody ScholarProject scholarProject) {
+    public ResponseEntity<ScholarProject> createScholarProject(@RequestBody ScholarProject scholarProject) {
         try {
-            return scholarProjectService.creteScholarProject(idiomId, scholarProject);
+            return scholarProjectService.creteScholarProject(scholarProject);
         } catch (ScholarProjectFoundException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
@@ -56,21 +56,19 @@ public class ScholarProjectController {
         }
     }
 
-    @GetMapping("/by-idiom/{idiomId}")
-    public ResponseEntity<Set<ScholarProjectDTO>> getScholarProjectsByLanguage(@PathVariable("idiomId") Long idiomId) {
-        return scholarProjectService.getAllByIdiom(idiomId);
+    @GetMapping("/")
+    public ResponseEntity<List<ScholarProject>> getAll() {
+        return scholarProjectService.getAll();
     }
 
     @GetMapping("/search/title")
-    public ResponseEntity<Set<ScholarProjectDTO>> searchScholarProjectsByTitleAndIdiom(@RequestParam("title") String title,
-                                                                                       @RequestParam("idiomId") Long idiomId) {
-        return scholarProjectService.getByTitleAndIdiomId(title, idiomId);
+    public ResponseEntity<Set<ScholarProjectDTO>> searchScholarProjectsByTitle(@RequestParam("title") String title) {
+        return scholarProjectService.getByTitle(title);
     }
 
     @GetMapping("/search/tag")
-    public ResponseEntity<Set<ScholarProjectDTO>> searchScholarProjectsByTagAndIdiom(@RequestParam("tagName") String tagName,
-                                                                                     @RequestParam("idiomId") Long idiomId) {
-        return scholarProjectService.getByTagNameAndIdiomId(tagName, idiomId);
+    public ResponseEntity<Set<ScholarProjectDTO>> searchScholarProjects(@RequestParam("tagName") String tagName) {
+        return scholarProjectService.getByTagName(tagName);
     }
 
     @PutMapping("/{id}/add-images")

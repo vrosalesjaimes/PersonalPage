@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -42,8 +43,8 @@ public class EducationController {
         return educationService.deleteEducation(id);
     }
 
-    @GetMapping("/idiom/{id}")
-    public ResponseEntity<Set<Education>> getAllByLanguage(@PathVariable("id") Long id) {
-        return educationService.getAllByIdiom(id);
+    @GetMapping("/")
+    public ResponseEntity<List<Education>> getAll() {
+        return educationService.getAll();
     }
 }
