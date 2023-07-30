@@ -3,16 +3,17 @@ package com.vrj.mysite.repositories;
 import com.vrj.mysite.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
-    Optional<Post> findByTitleAndIdiom_id(String title, Long idiom_id);
+    Optional<Post> findByTitle(String title);
 
-    Set<Post> findAllByIdiomId(Long idiomId);
+    List<Post> findAll();
 
-    Set<Post> findAllByTitleContainingIgnoreCaseAndIdiom_Id(String title, Long idiomId);
+    Set<Post> findAllByTitleContainingIgnoreCase(String title);
 
-    Set<Post> findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(String tagName, Long idiomId);
+    Set<Post> findAllByTags_NameContainingIgnoreCase(String tagName);
 
 }

@@ -14,7 +14,5 @@ public interface AboutService {
 
     ResponseEntity<String> deleteAbout(Long id);
 
-    ResponseEntity<About> getByIdiomId(Long id) throws Exception;
-
     ResponseEntity<String> addImages(Long id, Set<Image> images) throws Exception;
 }

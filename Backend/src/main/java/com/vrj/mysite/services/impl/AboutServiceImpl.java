@@ -44,12 +44,6 @@ public class AboutServiceImpl implements AboutService {
         }
         about.setImages(savedImages);
 
-        Optional<Idiom> idiom = this.idiomRepository.findById(about.getIdiom().getId());
-        if (idiom.isPresent())
-            about.setIdiom(idiom.get());
-        else
-            about.setIdiom(this.idiomRepository.save(about.getIdiom()));
-
         about = this.aboutRepository.save(about);
 
         return ResponseEntity.ok(about);
@@ -74,16 +68,6 @@ public class AboutServiceImpl implements AboutService {
             return ResponseEntity.status(HttpStatus.OK).body("About section successfully removed.");
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("About section not found.");
-    }
-
-    @Override
-    public ResponseEntity<About> getByIdiomId(Long id) throws Exception {
-        Optional<About> about = this.aboutRepository.findByIdiom_id(id);
-
-        if (about.isEmpty())
-            throw new Exception("About section not found");
-
-        return ResponseEntity.ok(about.get());
     }
 
     @Override

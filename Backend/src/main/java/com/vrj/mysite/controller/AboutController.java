@@ -43,16 +43,6 @@ public class AboutController {
         return this.aboutService.deleteAbout(id);
     }
 
-    @GetMapping("/get/{idiom-id}")
-    public ResponseEntity<?> getByIdiomId(@PathVariable(value = "idiom-id") Long idiomId){
-        try {
-            return this.aboutService.getByIdiomId(idiomId);
-        } catch (Exception e) {
-            System.out.println("About section not found.");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("About section not found.");
-        }
-    }
-
     @PutMapping("/{id}/add-images")
     public ResponseEntity<?> addImages(@PathVariable(value = "id") Long id,
                                        @RequestBody Set<Image> images){
