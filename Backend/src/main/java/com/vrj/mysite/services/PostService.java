@@ -8,23 +8,24 @@ import com.vrj.mysite.model.Post;
 import com.vrj.mysite.model.Tag;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Set;
 
 public interface PostService {
 
-    ResponseEntity<Post> createPost(Long idiomId, Post post) throws PostFoundException;
+    ResponseEntity<Post> createPost(Post post) throws PostFoundException;
 
     ResponseEntity<String> updatePost(Long id, Post post) throws PostNotFoundException;
 
     ResponseEntity<String> deletePost(Long id);
 
-    ResponseEntity<Set<PostDTO>> getAllByIdiomId(Long idiomId);
+    ResponseEntity<List<PostDTO>> getAll();
 
     ResponseEntity<Post> getById(Long id) throws PostFoundException;
 
-    ResponseEntity<Set<PostDTO>> searchByNameAndIdiomId(String title, Long idiomId);
+    ResponseEntity<Set<PostDTO>> searchByName(String title);
 
-    ResponseEntity<Set<PostDTO>> searchByTagNameAndIdiomId(String tagName, Long idiomId);
+    ResponseEntity<Set<PostDTO>> searchByTagName(String tagName);
 
     ResponseEntity<String> addImages(Long id, Set<Image> images) throws PostNotFoundException;
 

@@ -7,11 +7,12 @@ import com.vrj.mysite.exceptions.PersonalProjectNotFoundException;
 import com.vrj.mysite.model.*;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Set;
 
 public interface PersonalProjectService {
 
-    ResponseEntity<PersonalProject> createPersonalProject(Long idiomId, PersonalProject personalProject) throws PersonalProjectFoundException;
+    ResponseEntity<PersonalProject> createPersonalProject(PersonalProject personalProject) throws PersonalProjectFoundException;
 
     ResponseEntity<String> updatePersonalProject(Long id, PersonalProject personalProject) throws PersonalProjectNotFoundException;
 
@@ -19,13 +20,13 @@ public interface PersonalProjectService {
 
     ResponseEntity<PersonalProject> getById(Long id) throws PersonalProjectNotFoundException;
 
-    ResponseEntity<Set<PersonalProjectDTO>> getAllByIdiom(Long idiom_id);
+    ResponseEntity<List<PersonalProjectDTO>> getAll();
 
-    ResponseEntity<Set<PersonalProjectDTO>> getByTitleAndIdiomId(String title, Long idiomId);
+    ResponseEntity<Set<PersonalProjectDTO>> getByTitle(String title);
 
-    ResponseEntity<Set<PersonalProjectDTO>> getByTagNameAndIdiomId(String tagNAme, Long idiomId);
+    ResponseEntity<Set<PersonalProjectDTO>> getByTagName(String tagName);
 
-    ResponseEntity<Set<PersonalProjectDTO>> getByAuthorNameAndIdiomId(String authorName, Long idiomId);
+    ResponseEntity<Set<PersonalProjectDTO>> getByAuthorName(String authorName);
 
     ResponseEntity<String> addImages(Long id, Set<Image> images) throws PersonalProjectNotFoundException;
 

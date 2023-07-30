@@ -4,6 +4,7 @@ import com.vrj.mysite.exceptions.WorkExperienceNotFoundException;
 import com.vrj.mysite.model.WorkExperience;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Set;
 
 public interface WorkExperienceService {
@@ -14,5 +15,5 @@ public interface WorkExperienceService {
 
     ResponseEntity<String> deleteWorkExperience(Long id);
 
-    ResponseEntity<Set<WorkExperience>> getAllByIdiomId(Long idiomId);
+    ResponseEntity<List<WorkExperience>> getAll();
 }

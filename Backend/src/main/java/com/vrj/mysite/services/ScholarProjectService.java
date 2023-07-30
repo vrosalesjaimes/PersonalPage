@@ -6,11 +6,12 @@ import com.vrj.mysite.exceptions.ScholarProjectNotFoundException;
 import com.vrj.mysite.model.*;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Set;
 
 public interface ScholarProjectService {
 
-    ResponseEntity<ScholarProject> creteScholarProject(Long idiomId, ScholarProject scholarProject) throws ScholarProjectFoundException;
+    ResponseEntity<ScholarProject> creteScholarProject(ScholarProject scholarProject) throws ScholarProjectFoundException;
 
     ResponseEntity<String> updateScholarProject(Long id, ScholarProject scholarProject) throws ScholarProjectNotFoundException;
 
@@ -18,11 +19,11 @@ public interface ScholarProjectService {
 
     ResponseEntity<ScholarProject> getById(Long id) throws ScholarProjectNotFoundException;
 
-    ResponseEntity<Set<ScholarProjectDTO>> getAllByIdiom(Long idiom_id);
+    ResponseEntity<List<ScholarProjectDTO>> getAll();
 
-    ResponseEntity<Set<ScholarProjectDTO>> getByTitleAndIdiomId(String title, Long idiomId);
+    ResponseEntity<Set<ScholarProjectDTO>> getByTitle(String title);
 
-    ResponseEntity<Set<ScholarProjectDTO>> getByTagNameAndIdiomId(String tagNAme, Long idiomId);
+    ResponseEntity<Set<ScholarProjectDTO>> getByTagName(String tagNAme);
 
     ResponseEntity<String> addImages(Long id, Set<Image> images) throws ScholarProjectNotFoundException;
 

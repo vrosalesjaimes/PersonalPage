@@ -6,21 +6,22 @@ import com.vrj.mysite.model.Certification;
 import com.vrj.mysite.model.Tag;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Set;
 
 public interface CertificationService {
 
-    ResponseEntity<Certification> createCertification(Long id, Certification certification) throws CertificationFoundException;
+    ResponseEntity<Certification> createCertification(Certification certification) throws CertificationFoundException;
 
     ResponseEntity<String> updateCertification(Long id, Certification certification) throws CertificationNotFoundException;
 
     ResponseEntity<String> delete(Long id);
 
-    ResponseEntity<Set<Certification>> getAllByIdiomId(Long id);
+    ResponseEntity<List<Certification>> getAll();
 
-    ResponseEntity<Set<Certification>> searchByTitle(String title, Long idiomId);
+    ResponseEntity<Set<Certification>> searchByTitle(String title);
 
-    ResponseEntity<Set<Certification>> searchByTagAndIdiom(String tagName, Long idiomId);
+    ResponseEntity<Set<Certification>> searchByTag(String tagName);
 
     ResponseEntity<String> addTags(Long id, Set<Tag> tags) throws CertificationNotFoundException;
 }
