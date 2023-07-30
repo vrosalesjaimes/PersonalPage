@@ -19,7 +19,7 @@ public interface ScholarProjectService {
 
     ResponseEntity<ScholarProject> getById(Long id) throws ScholarProjectNotFoundException;
 
-    ResponseEntity<List<ScholarProjectDTO>> getAll();
+    ResponseEntity<List<ScholarProject>> getAll();
 
     ResponseEntity<Set<ScholarProjectDTO>> getByTitle(String title);
 

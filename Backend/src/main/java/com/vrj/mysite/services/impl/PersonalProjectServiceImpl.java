@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -38,17 +39,10 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
     private TagService tagService;
 
     @Override
-    public ResponseEntity<PersonalProject> createPersonalProject(Long idiomId,
-                                                                 PersonalProject personalProject) throws PersonalProjectFoundException {
-
-        Optional<Idiom> idiom = this.idiomRepository.findById(idiomId);
-        if (idiom.isPresent())
-            personalProject.setIdiom(idiom.get());
-        else
-            personalProject.setIdiom(this.idiomRepository.save(personalProject.getIdiom()));
+    public ResponseEntity<PersonalProject> createPersonalProject(PersonalProject personalProject) throws PersonalProjectFoundException {
 
         Optional<PersonalProject> localProject = this.personalProjectRepository
-                .findByTitleAndIdiom_id(personalProject.getTitle(), idiomId);
+                .findByTitle(personalProject.getTitle());
         if (localProject.isPresent())
             throw new PersonalProjectFoundException();
 
@@ -129,26 +123,26 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
     }
 
     @Override
-    public ResponseEntity<Set<PersonalProjectDTO>> getAllByIdiom(Long idiom_id) {
-        Set<PersonalProject> projects = this.personalProjectRepository.findAllByIdiom_id(idiom_id);
+    public ResponseEntity<List<PersonalProject>> getAll() {
+        List<PersonalProject> projects = this.personalProjectRepository.findAll();
+        return ResponseEntity.ok(projects);
+    }
+
+    @Override
+    public ResponseEntity<Set<PersonalProjectDTO>> getByTitle(String title) {
+        Set<PersonalProject> projects = this.personalProjectRepository.findAllByTitleContainingIgnoreCase(title);
         return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
     }
 
     @Override
-    public ResponseEntity<Set<PersonalProjectDTO>> getByTitleAndIdiomId(String title, Long idiomId) {
-        Set<PersonalProject> projects = this.personalProjectRepository.findAllByTitleContainingIgnoreCaseAndIdiom_Id(title, idiomId);
+    public ResponseEntity<Set<PersonalProjectDTO>> getByTagName(String tagNAme) {
+        Set<PersonalProject> projects = this.personalProjectRepository.findAllByTags_NameContainingIgnoreCase(tagNAme);
         return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
     }
 
     @Override
-    public ResponseEntity<Set<PersonalProjectDTO>> getByTagNameAndIdiomId(String tagNAme, Long idiomId) {
-        Set<PersonalProject> projects = this.personalProjectRepository.findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(tagNAme, idiomId);
-        return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
-    }
-
-    @Override
-    public ResponseEntity<Set<PersonalProjectDTO>> getByAuthorNameAndIdiomId(String authorName, Long idiomId) {
-        Set<PersonalProject> projects = this.personalProjectRepository.findAllByAuthors_NameContainingIgnoreCaseAndIdiom_Id(authorName, idiomId);
+    public ResponseEntity<Set<PersonalProjectDTO>> getByAuthorName(String authorName) {
+        Set<PersonalProject> projects = this.personalProjectRepository.findAllByAuthors_NameContainingIgnoreCase(authorName);
         return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
     }
 

@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -36,12 +37,6 @@ public class EducationServiceImpl implements EducationService {
             education.setImage(image.get());
         else
             education.setImage(this.imageRepository.save(education.getImage()));
-
-        Optional<Idiom> idiom = this.idiomRepository.findById(education.getIdiom().getId());
-        if (idiom.isPresent())
-            education.setIdiom(idiom.get());
-        else
-            education.setIdiom(this.idiomRepository.save(education.getIdiom()));
 
         education = this.educationRepository.save(education);
 
@@ -71,7 +66,7 @@ public class EducationServiceImpl implements EducationService {
     }
 
     @Override
-    public ResponseEntity<Set<Education>> getAllByIdiom(Long id) {
-        return ResponseEntity.ok(this.educationRepository.findAllByIdiom_id(id));
+    public ResponseEntity<List<Education>> getAll() {
+        return ResponseEntity.ok(this.educationRepository.findAll());
     }
 }

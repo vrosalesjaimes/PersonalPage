@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -30,16 +31,10 @@ public class CertificationServiceImpl implements CertificationService {
     private TagService tagService;
 
     @Override
-    public ResponseEntity<Certification> createCertification(Long id,
-                                                             Certification certification) throws CertificationFoundException {
-        Optional<Idiom> idiom = this.idiomRepository.findById(id);
-        if (idiom.isPresent())
-            certification.setIdiom(idiom.get());
-        else
-            certification.setIdiom(this.idiomRepository.save(certification.getIdiom()));
+    public ResponseEntity<Certification> createCertification(Certification certification) throws CertificationFoundException {
 
         Optional<Certification> localCertification =
-                this.certificationRepository.findByTitleAndIdiom_id(certification.getTitle(), id);
+                this.certificationRepository.findByTitle(certification.getTitle());
 
         if (localCertification.isPresent())
             throw new CertificationFoundException();
@@ -61,7 +56,7 @@ public class CertificationServiceImpl implements CertificationService {
     @Override
     public ResponseEntity<String> updateCertification(Long id, Certification certification) throws CertificationNotFoundException {
         Optional<Certification> localCertification =
-                this.certificationRepository.findByTitleAndIdiom_id(certification.getTitle(), id);
+                this.certificationRepository.findByTitle(certification.getTitle());
 
         if (localCertification.isEmpty())
             throw new CertificationNotFoundException();
@@ -82,20 +77,20 @@ public class CertificationServiceImpl implements CertificationService {
     }
 
     @Override
-    public ResponseEntity<Set<Certification>> getAllByIdiomId(Long id) {
-        return ResponseEntity.ok(this.certificationRepository.findAllByIdiom_id(id));
+    public ResponseEntity<List<Certification>> getAll() {
+        return ResponseEntity.ok(this.certificationRepository.findAll());
     }
 
     @Override
-    public ResponseEntity<Set<Certification>> searchByTitle(String title, Long idiomId) {
+    public ResponseEntity<Set<Certification>> searchByTitle(String title) {
         return ResponseEntity.ok(this.certificationRepository
-                .findAllByTitleContainingIgnoreCaseAndIdiom_Id(title, idiomId));
+                .findAllByTitleContainingIgnoreCase(title));
     }
 
     @Override
-    public ResponseEntity<Set<Certification>> searchByTagAndIdiom(String tagName, Long idiomId) {
+    public ResponseEntity<Set<Certification>> searchByTag(String tagName) {
         return ResponseEntity.ok(this.certificationRepository
-                .findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(tagName, idiomId));
+                .findAllByTags_NameContainingIgnoreCase(tagName));
     }
 
     @Override

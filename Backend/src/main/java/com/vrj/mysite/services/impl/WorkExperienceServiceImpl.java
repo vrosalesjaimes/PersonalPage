@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -21,11 +22,6 @@ public class WorkExperienceServiceImpl implements WorkExperienceService {
 
     @Override
     public ResponseEntity<WorkExperience> createWorkExperience(WorkExperience workExperience) {
-        Optional<Idiom> idiom = this.idiomRepository.findById(workExperience.getId());
-        if (idiom.isPresent())
-            workExperience.setIdiom(idiom.get());
-        else
-            workExperience.setIdiom(this.idiomRepository.save(workExperience.getIdiom()));
 
         workExperience = this.workExperienceRepository.save(workExperience);
 
@@ -53,7 +49,7 @@ public class WorkExperienceServiceImpl implements WorkExperienceService {
     }
 
     @Override
-    public ResponseEntity<Set<WorkExperience>> getAllByIdiomId(Long idiomId) {
-        return ResponseEntity.ok(this.workExperienceRepository.findAllByIdiom_id(idiomId));
+    public ResponseEntity<List<WorkExperience>> getAll() {
+        return ResponseEntity.ok(this.workExperienceRepository.findAll());
     }
 }

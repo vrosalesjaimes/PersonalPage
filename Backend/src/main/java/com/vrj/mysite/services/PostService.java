@@ -19,7 +19,7 @@ public interface PostService {
 
     ResponseEntity<String> deletePost(Long id);
 
-    ResponseEntity<List<PostDTO>> getAll();
+    ResponseEntity<List<Post>> getAll();
 
     ResponseEntity<Post> getById(Long id) throws PostFoundException;
 

@@ -20,7 +20,7 @@ public interface PersonalProjectService {
 
     ResponseEntity<PersonalProject> getById(Long id) throws PersonalProjectNotFoundException;
 
-    ResponseEntity<List<PersonalProjectDTO>> getAll();
+    ResponseEntity<List<PersonalProject>> getAll();
 
     ResponseEntity<Set<PersonalProjectDTO>> getByTitle(String title);
 

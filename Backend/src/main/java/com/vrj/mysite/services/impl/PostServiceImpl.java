@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -40,14 +41,9 @@ public class PostServiceImpl implements PostService {
     private TagService tagService;
 
     @Override
-    public ResponseEntity<Post> createPost(Long idiomId, Post post) throws PostFoundException {
-        Optional<Idiom> idiom = this.idiomRepository.findById(idiomId);
-        if (idiom.isPresent())
-            post.setIdiom(idiom.get());
-        else
-            post.setIdiom(this.idiomRepository.save(post.getIdiom()));
+    public ResponseEntity<Post> createPost(Post post) throws PostFoundException {
 
-        Optional<Post> localPost = this.postRepository.findByTitleAndIdiom_id(post.getTitle(), idiomId);
+        Optional<Post> localPost = this.postRepository.findByTitle(post.getTitle());
         if (localPost.isPresent())
             throw new PostFoundException();
 
@@ -101,9 +97,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public ResponseEntity<Set<PostDTO>> getAllByIdiomId(Long idiomId) {
-        Set<Post> posts = this.postRepository.findAllByIdiomId(idiomId);
-        return ResponseEntity.ok(this.setPostToSetPostDTO(posts));
+    public ResponseEntity<List<Post>> getAll() {
+        List<Post> posts = this.postRepository.findAll();
+        return ResponseEntity.ok(posts);
     }
 
     @Override
@@ -117,14 +113,14 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public ResponseEntity<Set<PostDTO>> searchByNameAndIdiomId(String title, Long idiomId) {
-        Set<Post> posts = this.postRepository.findAllByTitleContainingIgnoreCaseAndIdiom_Id(title, idiomId);
+    public ResponseEntity<Set<PostDTO>> searchByName(String title) {
+        Set<Post> posts = this.postRepository.findAllByTitleContainingIgnoreCase(title);
         return ResponseEntity.ok(this.setPostToSetPostDTO(posts));
     }
 
     @Override
-    public ResponseEntity<Set<PostDTO>> searchByTagNameAndIdiomId(String tagName, Long idiomId) {
-        Set<Post> posts = this.postRepository.findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(tagName, idiomId);
+    public ResponseEntity<Set<PostDTO>> searchByTagName(String tagName) {
+        Set<Post> posts = this.postRepository.findAllByTags_NameContainingIgnoreCase(tagName);
         return ResponseEntity.ok(this.setPostToSetPostDTO(posts));
     }
 

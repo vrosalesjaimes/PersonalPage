@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -38,15 +39,10 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
     private TagService tagService;
 
     @Override
-    public ResponseEntity<ScholarProject> creteScholarProject(Long idiomId, ScholarProject scholarProject) throws ScholarProjectFoundException {
-        Optional<Idiom> idiom = this.idiomRepository.findById(idiomId);
-        if (idiom.isPresent())
-            scholarProject.setIdiom(idiom.get());
-        else
-            scholarProject.setIdiom(this.idiomRepository.save(scholarProject.getIdiom()));
+    public ResponseEntity<ScholarProject> creteScholarProject(ScholarProject scholarProject) throws ScholarProjectFoundException {
 
         Optional<ScholarProject> localProject = this.scholarProjectRepository
-                .findByTitleAndIdiom_id(scholarProject.getTitle(), idiomId);
+                .findByTitle(scholarProject.getTitle());
         if (localProject.isPresent())
             throw new ScholarProjectFoundException();
 
@@ -128,20 +124,20 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
     }
 
     @Override
-    public ResponseEntity<Set<ScholarProjectDTO>> getAllByIdiom(Long idiom_id) {
-        Set<ScholarProject> projects = this.scholarProjectRepository.findAllByIdiom_id(idiom_id);
+    public ResponseEntity<List<ScholarProject>> getAll() {
+        List<ScholarProject> projects = this.scholarProjectRepository.findAll();
+        return ResponseEntity.ok(projects);
+    }
+
+    @Override
+    public ResponseEntity<Set<ScholarProjectDTO>> getByTitle(String title) {
+        Set<ScholarProject> projects = this.scholarProjectRepository.findAllByTitleContainingIgnoreCase(title);
         return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
     }
 
     @Override
-    public ResponseEntity<Set<ScholarProjectDTO>> getByTitleAndIdiomId(String title, Long idiomId) {
-        Set<ScholarProject> projects = this.scholarProjectRepository.findAllByTitleContainingIgnoreCaseAndIdiom_Id(title, idiomId);
-        return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
-    }
-
-    @Override
-    public ResponseEntity<Set<ScholarProjectDTO>> getByTagNameAndIdiomId(String tagNAme, Long idiomId) {
-        Set<ScholarProject> projects = this.scholarProjectRepository.findAllByTags_NameContainingIgnoreCaseAndIdiom_Id(tagNAme, idiomId);
+    public ResponseEntity<Set<ScholarProjectDTO>> getByTagName(String tagNAme) {
+        Set<ScholarProject> projects = this.scholarProjectRepository.findAllByTags_NameContainingIgnoreCase(tagNAme);
         return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
     }
 
