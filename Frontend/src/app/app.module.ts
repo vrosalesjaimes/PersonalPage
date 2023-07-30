@@ -16,6 +16,8 @@ import { LogoComponent } from './components/logo/logo.component';
 import { HomeComponent } from './components/client/home/home.component';
 import {MatButtonModule} from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PanelComponent } from './components/admin/panel/panel.component';
+import { PanelClientComponent } from './components/client/panel-client/panel-client.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NavbarComponent,
     LogoComponent,
     HomeComponent,
+    PanelComponent,
+    PanelClientComponent,
   ],
   imports: [
     BrowserModule,
