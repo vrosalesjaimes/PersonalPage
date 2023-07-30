@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2} from '@angular/core';
 import { faGithub, faLinkedinIn} from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
@@ -20,6 +20,8 @@ export class HomeComponent implements  OnInit {
   typingSpeed: number = 100; 
   eraseSpeed: number = 50; 
   delayAfterTyping: number = 1000; 
+
+  constructor(private renderer: Renderer2, private elementRef: ElementRef) { }
 
   ngOnInit() {
     this.startTypingEffect();
@@ -58,4 +60,18 @@ export class HomeComponent implements  OnInit {
       }, this.typingSpeed);
     }
   }
+
+  onKnowMeClick() {
+    const allContentElement = document.getElementById('all-content');
+    const homeElement = document.getElementById('home');
+    if (allContentElement) {
+      console.log(allContentElement)
+      this.renderer.addClass(allContentElement, 'show-content');
+      allContentElement.scrollIntoView({ behavior: 'smooth' });
+      homeElement?.style.setProperty('display', 'none');
+    } else{
+      console.log('No se encontro el elemento')
+    }
+  }
+  
 }

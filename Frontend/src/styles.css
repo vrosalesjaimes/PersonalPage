@@ -1,7 +1,33 @@
-body{
+body {
     margin: 0;
     padding: 0;
     font: 1em;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: #333;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #999;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #bbb;
+}
+
+::-webkit-scrollbar-thumb:active {
+    opacity: 1;
+}
