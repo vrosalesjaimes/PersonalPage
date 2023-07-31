@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Reference } from '../interface/reference';
+import { Reference } from '../interface/reference.interface';
 import { HttpClient } from '@angular/common/http';
 import { REFERENCE_URL } from '../routes.constants';
-import { Author } from '../interface/author';
+import { Author } from '../interface/author.interface';
 
 @Injectable({
   providedIn: 'root'

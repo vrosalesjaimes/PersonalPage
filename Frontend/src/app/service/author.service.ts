@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Author } from '../interface/author';
+import { Author } from '../interface/author.interface';
 import { AUTHOR_URL } from '../routes.constants';
 
 @Injectable({

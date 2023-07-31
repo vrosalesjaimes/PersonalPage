@@ -1,4 +1,4 @@
-import { Author } from './author';
+import { Author } from './author.interface';
 
 export interface Reference {
   id: number;

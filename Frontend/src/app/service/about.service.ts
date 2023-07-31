@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { About } from '../interface/about';
-import { Image } from '../interface/image';
+import { About } from '../interface/about.interface';
+import { Image } from '../interface/image.interface';
 import { HttpClient } from '@angular/common/http';
 import { ABOUT_URL } from '../routes.constants';
 

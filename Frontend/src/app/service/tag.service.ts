@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Tag } from '../interface/tag';
+import { Tag } from '../interface/tag.interface';
 import { TAG_URL } from '../routes.constants';
 
 @Injectable({
