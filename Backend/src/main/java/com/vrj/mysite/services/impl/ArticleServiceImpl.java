@@ -1,6 +1,5 @@
 package com.vrj.mysite.services.impl;
 
-import com.vrj.mysite.dto.Article;
 import com.vrj.mysite.exceptions.*;
 import com.vrj.mysite.model.*;
 import com.vrj.mysite.repositories.*;
