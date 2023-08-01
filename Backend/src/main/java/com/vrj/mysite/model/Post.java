@@ -1,6 +1,5 @@
 package com.vrj.mysite.model;
 
-import com.vrj.mysite.dto.PostDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -62,16 +61,6 @@ public class Post {
 
     public void addTags(Set<Tag> savedTags) {
         this.tags.addAll(savedTags);
-    }
-
-    public PostDTO toDTO() {
-        PostDTO postDTO = new PostDTO();
-        postDTO.setTitle(this.getTitle());
-        postDTO.setDescription(this.getDescription());
-        postDTO.setInitImage(this.getInitImage());
-        postDTO.setDate(this.getDate());
-        postDTO.setTags(this.tags);
-        return postDTO;
     }
 
 }

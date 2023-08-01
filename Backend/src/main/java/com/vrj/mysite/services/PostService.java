@@ -1,6 +1,5 @@
 package com.vrj.mysite.services;
 
-import com.vrj.mysite.dto.PostDTO;
 import com.vrj.mysite.exceptions.PostFoundException;
 import com.vrj.mysite.exceptions.PostNotFoundException;
 import com.vrj.mysite.model.Image;
@@ -23,9 +22,9 @@ public interface PostService {
 
     ResponseEntity<Post> getById(Long id) throws PostFoundException;
 
-    ResponseEntity<Set<PostDTO>> searchByName(String title);
+    ResponseEntity<Set<Post>> searchByName(String title);
 
-    ResponseEntity<Set<PostDTO>> searchByTagName(String tagName);
+    ResponseEntity<Set<Post>> searchByTagName(String tagName);
 
     ResponseEntity<String> addImages(Long id, Set<Image> images) throws PostNotFoundException;
 

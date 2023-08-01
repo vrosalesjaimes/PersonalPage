@@ -1,6 +1,5 @@
 package com.vrj.mysite.controller;
 
-import com.vrj.mysite.dto.CreateUserDTO;
 import com.vrj.mysite.dto.UpdateUserDTO;
 import com.vrj.mysite.exceptions.UserFoundException;
 import com.vrj.mysite.exceptions.UserNotFoundException;

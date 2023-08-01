@@ -1,6 +1,5 @@
 package com.vrj.mysite.controller;
 
-import com.vrj.mysite.dto.PersonalProjectDTO;
 import com.vrj.mysite.exceptions.*;
 import com.vrj.mysite.model.*;
 import com.vrj.mysite.services.PersonalProjectService;
@@ -58,17 +57,17 @@ public class PersonalProjectController {
     }
 
     @GetMapping("/search/title")
-    public ResponseEntity<Set<PersonalProjectDTO>> searchPersonalProjectsByTitle(@RequestParam("title") String title) {
+    public ResponseEntity<Set<PersonalProject>> searchPersonalProjectsByTitle(@RequestParam("title") String title) {
         return personalProjectService.getByTitle(title);
     }
 
     @GetMapping("/search/tag")
-    public ResponseEntity<Set<PersonalProjectDTO>> searchPersonalProjectsByTag(@RequestParam("tagName") String tagName) {
+    public ResponseEntity<Set<PersonalProject>> searchPersonalProjectsByTag(@RequestParam("tagName") String tagName) {
         return personalProjectService.getByTagName(tagName);
     }
 
     @GetMapping("/search/author")
-    public ResponseEntity<Set<PersonalProjectDTO>> searchPersonalProjectsByAuthor(@RequestParam("authorName") String authorName) {
+    public ResponseEntity<Set<PersonalProject>> searchPersonalProjectsByAuthor(@RequestParam("authorName") String authorName) {
         return personalProjectService.getByAuthorName(authorName);
     }
 

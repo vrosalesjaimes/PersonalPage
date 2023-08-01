@@ -1,6 +1,5 @@
 package com.vrj.mysite.services.impl;
 
-import com.vrj.mysite.dto.ScholarProjectDTO;
 import com.vrj.mysite.exceptions.*;
 import com.vrj.mysite.model.*;
 import com.vrj.mysite.repositories.*;
@@ -130,15 +129,15 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
     }
 
     @Override
-    public ResponseEntity<Set<ScholarProjectDTO>> getByTitle(String title) {
+    public ResponseEntity<Set<ScholarProject>> getByTitle(String title) {
         Set<ScholarProject> projects = this.scholarProjectRepository.findAllByTitleContainingIgnoreCase(title);
-        return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
+        return ResponseEntity.ok(projects);
     }
 
     @Override
-    public ResponseEntity<Set<ScholarProjectDTO>> getByTagName(String tagNAme) {
+    public ResponseEntity<Set<ScholarProject>> getByTagName(String tagNAme) {
         Set<ScholarProject> projects = this.scholarProjectRepository.findAllByTags_NameContainingIgnoreCase(tagNAme);
-        return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
+        return ResponseEntity.ok(projects);
     }
 
     @Override
@@ -223,11 +222,5 @@ public class ScholarProjectServiceImpl implements ScholarProjectService {
         this.scholarProjectRepository.save(localProject.get());
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Images have been successfully added");
-    }
-
-    public Set<ScholarProjectDTO> setProjectToSetProjectDto(Set<ScholarProject> projects) {
-        return projects.stream()
-                .map(ScholarProject::toDTO)
-                .collect(Collectors.toSet());
     }
 }

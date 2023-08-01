@@ -1,6 +1,5 @@
 package com.vrj.mysite.controller;
 
-import com.vrj.mysite.dto.PostDTO;
 import com.vrj.mysite.exceptions.PostFoundException;
 import com.vrj.mysite.exceptions.PostNotFoundException;
 import com.vrj.mysite.model.Image;
@@ -61,12 +60,12 @@ public class PostController {
     }
 
     @GetMapping("/search/title")
-    public ResponseEntity<Set<PostDTO>> searchPostsByTitle(@RequestParam("title") String title) {
+    public ResponseEntity<Set<Post>> searchPostsByTitle(@RequestParam("title") String title) {
         return postService.searchByName(title);
     }
 
     @GetMapping("/search/tag")
-    public ResponseEntity<Set<PostDTO>> searchPostsByTag(@RequestParam("tagName") String tagName) {
+    public ResponseEntity<Set<Post>> searchPostsByTag(@RequestParam("tagName") String tagName) {
         return postService.searchByTagName(tagName);
     }
 

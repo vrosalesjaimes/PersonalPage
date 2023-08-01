@@ -1,6 +1,5 @@
 package com.vrj.mysite.controller;
 
-import com.vrj.mysite.dto.ScholarProjectDTO;
 import com.vrj.mysite.exceptions.ScholarProjectFoundException;
 import com.vrj.mysite.exceptions.ScholarProjectNotFoundException;
 import com.vrj.mysite.model.ScholarProject;
@@ -62,12 +61,12 @@ public class ScholarProjectController {
     }
 
     @GetMapping("/search/title")
-    public ResponseEntity<Set<ScholarProjectDTO>> searchScholarProjectsByTitle(@RequestParam("title") String title) {
+    public ResponseEntity<Set<ScholarProject>> searchScholarProjectsByTitle(@RequestParam("title") String title) {
         return scholarProjectService.getByTitle(title);
     }
 
     @GetMapping("/search/tag")
-    public ResponseEntity<Set<ScholarProjectDTO>> searchScholarProjects(@RequestParam("tagName") String tagName) {
+    public ResponseEntity<Set<ScholarProject>> searchScholarProjects(@RequestParam("tagName") String tagName) {
         return scholarProjectService.getByTagName(tagName);
     }
 

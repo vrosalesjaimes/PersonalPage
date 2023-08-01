@@ -1,6 +1,5 @@
 package com.vrj.mysite.model;
 
-import com.vrj.mysite.dto.ArticleDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

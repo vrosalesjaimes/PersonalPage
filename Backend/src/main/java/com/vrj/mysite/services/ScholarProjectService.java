@@ -1,6 +1,5 @@
 package com.vrj.mysite.services;
 
-import com.vrj.mysite.dto.ScholarProjectDTO;
 import com.vrj.mysite.exceptions.ScholarProjectFoundException;
 import com.vrj.mysite.exceptions.ScholarProjectNotFoundException;
 import com.vrj.mysite.model.*;
@@ -21,9 +20,9 @@ public interface ScholarProjectService {
 
     ResponseEntity<List<ScholarProject>> getAll();
 
-    ResponseEntity<Set<ScholarProjectDTO>> getByTitle(String title);
+    ResponseEntity<Set<ScholarProject>> getByTitle(String title);
 
-    ResponseEntity<Set<ScholarProjectDTO>> getByTagName(String tagNAme);
+    ResponseEntity<Set<ScholarProject>> getByTagName(String tagNAme);
 
     ResponseEntity<String> addImages(Long id, Set<Image> images) throws ScholarProjectNotFoundException;
 

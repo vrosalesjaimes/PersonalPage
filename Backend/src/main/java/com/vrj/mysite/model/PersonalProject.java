@@ -1,6 +1,5 @@
 package com.vrj.mysite.model;
 
-import com.vrj.mysite.dto.PersonalProjectDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -88,14 +87,4 @@ public class PersonalProject {
         this.authors.addAll(savedAuthors);
     }
 
-    public PersonalProjectDTO toDTO() {
-        PersonalProjectDTO projectDTO = new PersonalProjectDTO();
-        projectDTO.setTitle(this.getTitle());
-        projectDTO.setDescription(this.getDescription());
-        projectDTO.setInitialImage(this.getInitialImage());
-        projectDTO.setDate(this.getDate());
-        projectDTO.setRepository(this.getRepository());
-        projectDTO.setTags(this.tags);
-        return projectDTO;
-    }
 }

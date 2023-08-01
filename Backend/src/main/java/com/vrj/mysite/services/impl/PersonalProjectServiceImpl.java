@@ -1,6 +1,5 @@
 package com.vrj.mysite.services.impl;
 
-import com.vrj.mysite.dto.PersonalProjectDTO;
 import com.vrj.mysite.exceptions.*;
 import com.vrj.mysite.model.*;
 import com.vrj.mysite.repositories.*;
@@ -129,21 +128,21 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
     }
 
     @Override
-    public ResponseEntity<Set<PersonalProjectDTO>> getByTitle(String title) {
+    public ResponseEntity<Set<PersonalProject>> getByTitle(String title) {
         Set<PersonalProject> projects = this.personalProjectRepository.findAllByTitleContainingIgnoreCase(title);
-        return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
+        return ResponseEntity.ok(projects);
     }
 
     @Override
-    public ResponseEntity<Set<PersonalProjectDTO>> getByTagName(String tagNAme) {
+    public ResponseEntity<Set<PersonalProject>> getByTagName(String tagNAme) {
         Set<PersonalProject> projects = this.personalProjectRepository.findAllByTags_NameContainingIgnoreCase(tagNAme);
-        return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
+        return ResponseEntity.ok(projects);
     }
 
     @Override
-    public ResponseEntity<Set<PersonalProjectDTO>> getByAuthorName(String authorName) {
+    public ResponseEntity<Set<PersonalProject>> getByAuthorName(String authorName) {
         Set<PersonalProject> projects = this.personalProjectRepository.findAllByAuthors_NameContainingIgnoreCase(authorName);
-        return ResponseEntity.ok(this.setProjectToSetProjectDto(projects));
+        return ResponseEntity.ok(projects);
     }
 
     @Override
@@ -228,11 +227,5 @@ public class PersonalProjectServiceImpl implements PersonalProjectService {
         this.personalProjectRepository.save(localProject.get());
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Images have been successfully added");
-    }
-
-    public Set<PersonalProjectDTO> setProjectToSetProjectDto(Set<PersonalProject> projects) {
-        return projects.stream()
-                .map(PersonalProject::toDTO)
-                .collect(Collectors.toSet());
     }
 }

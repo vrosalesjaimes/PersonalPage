@@ -1,7 +1,5 @@
 package com.vrj.mysite.services;
 
-
-import com.vrj.mysite.dto.PersonalProjectDTO;
 import com.vrj.mysite.exceptions.PersonalProjectFoundException;
 import com.vrj.mysite.exceptions.PersonalProjectNotFoundException;
 import com.vrj.mysite.model.*;
@@ -22,11 +20,11 @@ public interface PersonalProjectService {
 
     ResponseEntity<List<PersonalProject>> getAll();
 
-    ResponseEntity<Set<PersonalProjectDTO>> getByTitle(String title);
+    ResponseEntity<Set<PersonalProject>> getByTitle(String title);
 
-    ResponseEntity<Set<PersonalProjectDTO>> getByTagName(String tagName);
+    ResponseEntity<Set<PersonalProject>> getByTagName(String tagName);
 
-    ResponseEntity<Set<PersonalProjectDTO>> getByAuthorName(String authorName);
+    ResponseEntity<Set<PersonalProject>> getByAuthorName(String authorName);
 
     ResponseEntity<String> addImages(Long id, Set<Image> images) throws PersonalProjectNotFoundException;
 

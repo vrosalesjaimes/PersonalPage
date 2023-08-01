@@ -1,11 +1,9 @@
 package com.vrj.mysite.services.impl;
 
-import com.vrj.mysite.dto.PostDTO;
 import com.vrj.mysite.exceptions.ImageFoundException;
 import com.vrj.mysite.exceptions.PostFoundException;
 import com.vrj.mysite.exceptions.PostNotFoundException;
 import com.vrj.mysite.exceptions.TagFoundException;
-import com.vrj.mysite.model.Idiom;
 import com.vrj.mysite.model.Image;
 import com.vrj.mysite.model.Post;
 import com.vrj.mysite.model.Tag;
@@ -113,15 +111,15 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public ResponseEntity<Set<PostDTO>> searchByName(String title) {
+    public ResponseEntity<Set<Post>> searchByName(String title) {
         Set<Post> posts = this.postRepository.findAllByTitleContainingIgnoreCase(title);
-        return ResponseEntity.ok(this.setPostToSetPostDTO(posts));
+        return ResponseEntity.ok(posts);
     }
 
     @Override
-    public ResponseEntity<Set<PostDTO>> searchByTagName(String tagName) {
+    public ResponseEntity<Set<Post>> searchByTagName(String tagName) {
         Set<Post> posts = this.postRepository.findAllByTags_NameContainingIgnoreCase(tagName);
-        return ResponseEntity.ok(this.setPostToSetPostDTO(posts));
+        return ResponseEntity.ok(posts);
     }
 
     @Override
@@ -164,11 +162,5 @@ public class PostServiceImpl implements PostService {
         localPost.get().addTags(savedTag);
         this.postRepository.save(localPost.get());
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Tags have been successfully added");
-    }
-
-    public Set<PostDTO> setPostToSetPostDTO(Set<Post> posts) {
-        return posts.stream()
-                .map(Post::toDTO)
-                .collect(Collectors.toSet());
     }
 }
