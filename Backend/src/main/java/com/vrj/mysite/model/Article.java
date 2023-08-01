@@ -96,21 +96,4 @@ public class Article {
     public void addTags(Set<Tag> addedTags) {
         this.tags.addAll(addedTags);
     }
-
-    public ArticleDTO toDTO() {
-        ArticleDTO articleDTO = new ArticleDTO();
-        articleDTO.setId(this.id);
-        articleDTO.setTitle(this.title);
-        articleDTO.setDescription(this.description);
-        articleDTO.setInitialImage(this.initialImage);
-        articleDTO.setDate(this.date);
-        articleDTO.setLink(this.link);
-        return articleDTO;
-    }
-
-    public Set<ArticleDTO> setToDTOSet(Set<Article> articles) {
-        return articles.stream()
-                .map(Article::toDTO)
-                .collect(Collectors.toSet());
-    }
 }
