@@ -1,6 +1,6 @@
 package com.vrj.mysite.services.impl;
 
-import com.vrj.mysite.dto.ArticleDTO;
+import com.vrj.mysite.dto.Article;
 import com.vrj.mysite.exceptions.*;
 import com.vrj.mysite.model.*;
 import com.vrj.mysite.repositories.*;
@@ -212,26 +212,20 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public ResponseEntity<Set<ArticleDTO>> searchByTitle(String title) {
+    public ResponseEntity<Set<Article>> searchByTitle(String title) {
         Set<Article> localArticles = this.articleRepository.findAllByTitleContainingIgnoreCase(title);
-        return ResponseEntity.ok(this.setArticleToSetArticleDto(localArticles));
+        return ResponseEntity.ok(localArticles);
     }
 
     @Override
-    public ResponseEntity<Set<ArticleDTO>> searchByNameAuthor(String authorName) {
+    public ResponseEntity<Set<Article>> searchByNameAuthor(String authorName) {
         Set<Article> articles = this.articleRepository.findAllByAuthors_NameContainingIgnoreCase(authorName);
-        return ResponseEntity.ok(this.setArticleToSetArticleDto(articles));
+        return ResponseEntity.ok(articles);
     }
 
     @Override
-    public ResponseEntity<Set<ArticleDTO>> searchByTagName(String tagName) {
+    public ResponseEntity<Set<Article>> searchByTagName(String tagName) {
         Set<Article> articles = this.articleRepository.findAllByTags_NameContainingIgnoreCase(tagName);
-        return ResponseEntity.ok(this.setArticleToSetArticleDto(articles));
-    }
-
-    public Set<ArticleDTO> setArticleToSetArticleDto(Set<Article> articles) {
-        return articles.stream()
-                .map(Article::toDTO)
-                .collect(Collectors.toSet());
+        return ResponseEntity.ok(articles);
     }
 }

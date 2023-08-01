@@ -1,6 +1,5 @@
 package com.vrj.mysite.services;
 
-import com.vrj.mysite.dto.ArticleDTO;
 import com.vrj.mysite.exceptions.ArticleFoundException;
 import com.vrj.mysite.exceptions.ArticleNotFoundException;
 import com.vrj.mysite.model.*;
@@ -30,10 +29,10 @@ public interface ArticleService {
 
     ResponseEntity<Article> getArticle(Long id) throws ArticleNotFoundException;
 
-    ResponseEntity<Set<ArticleDTO>> searchByTitle(String title);
+    ResponseEntity<Set<Article>> searchByTitle(String title);
 
-    ResponseEntity<Set<ArticleDTO>> searchByNameAuthor(String authorName);
+    ResponseEntity<Set<Article>> searchByNameAuthor(String authorName);
 
-    ResponseEntity<Set<ArticleDTO>> searchByTagName(String tagName);
+    ResponseEntity<Set<Article>> searchByTagName(String tagName);
 
 }

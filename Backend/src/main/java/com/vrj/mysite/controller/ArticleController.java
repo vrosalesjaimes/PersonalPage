@@ -1,6 +1,5 @@
 package com.vrj.mysite.controller;
 
-import com.vrj.mysite.dto.ArticleDTO;
 import com.vrj.mysite.exceptions.ArticleFoundException;
 import com.vrj.mysite.exceptions.ArticleNotFoundException;
 import com.vrj.mysite.model.*;
@@ -100,17 +99,17 @@ public class ArticleController {
     }
 
     @GetMapping("/search/title")
-    public ResponseEntity<Set<ArticleDTO>> searchByTitleAndIdiom(@RequestParam("title") String title){
+    public ResponseEntity<Set<Article>> searchByTitleAndIdiom(@RequestParam("title") String title){
         return this.articleService.searchByTitle(title);
     }
 
     @GetMapping("/search/authorName")
-    private ResponseEntity<Set<ArticleDTO>> searchByAuthorNameAndIdiomId(@RequestParam("authorName") String authorName){
+    private ResponseEntity<Set<Article>> searchByAuthorNameAndIdiomId(@RequestParam("authorName") String authorName){
         return this.articleService.searchByNameAuthor(authorName);
     }
 
     @GetMapping("/search/tagName")
-    private ResponseEntity<Set<ArticleDTO>> searchByTagNameAndIdiomId(@RequestParam("tagName") String tagName){
+    private ResponseEntity<Set<Article>> searchByTagNameAndIdiomId(@RequestParam("tagName") String tagName){
         return  this.articleService.searchByTagName(tagName);
     }
 }
