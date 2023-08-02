@@ -1,5 +1,4 @@
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ElementRef, Renderer2 , HostListener} from '@angular/core';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
@@ -21,11 +20,17 @@ export class HomeComponent implements OnInit {
   typingSpeed: number = 100;
   eraseSpeed: number = 50;
   delayAfterTyping: number = 1000;
+  currentSlideIndex = 0;
+  slides: HTMLElement[] = [];
 
-  constructor(private router: Router) { }
+  constructor(private renderer: Renderer2, private elementRef: ElementRef) { }
 
   ngOnInit() {
     this.startTypingEffect();
+  }
+
+  ngAfterViewInit(): void {
+    this.slides = Array.from(document.querySelectorAll('.slide'));
   }
 
   /**
@@ -60,5 +65,16 @@ export class HomeComponent implements OnInit {
         this.startTypingEffect();
       }, this.typingSpeed);
     }
+  }
+
+  scrollToAboutMe() {
+    const aboutMeSection = document.querySelector('.about-me') as HTMLElement;
+
+    const slides = document.querySelectorAll('.slide') as NodeListOf<HTMLElement>;
+    slides.forEach(slide => {
+      slide.style.display = 'block';
+    });
+
+    aboutMeSection.scrollIntoView({ behavior: 'smooth' });
   }
 }

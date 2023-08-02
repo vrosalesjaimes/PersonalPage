@@ -1,4 +1,4 @@
-<div class="presentation">
+<section id="presentation" class="presentation">
     <div class="profile">
         <div class="orb">
             <img src="./../../../../assets/profile/profile.png" alt="" class="profile_img">
@@ -7,7 +7,7 @@
     <div class="info">
         <h1>Victor Rosales Jaimes</h1>
         <h2>Hello, I'm <span class="typing-effect">{{ currentLeyend }}</span></h2>
-        <button class="know-me">Know me</button>
+        <button class="know-me" (click)="scrollToAboutMe()">Know me</button>
         <div class="links">
             <a href="https://github.com/vrosalesjaimes" target="_blank" rel="noopener noreferrer">
                 <fa-icon [icon]="faGithub"></fa-icon>
@@ -20,4 +20,13 @@
             </a>
         </div>
     </div>
-</div>
+</section>
+<section class="about-me slide">
+    about me
+</section>
+<section class="work slide">
+    work
+</section>
+<section class="formation slide">
+    formation
+</section>
