@@ -18,6 +18,13 @@ import {MatButtonModule} from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PanelComponent } from './components/admin/panel/panel.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ArticlesComponent } from './components/client/articles/articles.component';
+import { CertificationsComponent } from './components/client/certifications/certifications.component';
+import { FormationComponent } from './components/client/formation/formation.component';
+import { PortfolioComponent } from './components/client/portfolio/portfolio.component';
+import { PostComponent } from './components/client/post/post.component';
+import { ScholarProjectsComponent } from './components/client/scholar-projects/scholar-projects.component';
+import { WorkExperiencesComponent } from './components/client/work-experiences/work-experiences.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +34,13 @@ import { HttpClientModule } from '@angular/common/http';
     LogoComponent,
     HomeComponent,
     PanelComponent,
+    ArticlesComponent,
+    CertificationsComponent,
+    FormationComponent,
+    PortfolioComponent,
+    PostComponent,
+    ScholarProjectsComponent,
+    WorkExperiencesComponent,
   ],
   imports: [
     BrowserModule,
