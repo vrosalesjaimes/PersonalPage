@@ -1,5 +1,6 @@
-import { Component, OnInit, ElementRef, Renderer2} from '@angular/core';
-import { faGithub, faLinkedinIn} from '@fortawesome/free-brands-svg-icons';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
+import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 
@@ -9,7 +10,7 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements  OnInit {
+export class HomeComponent implements OnInit {
   faGithub = faGithub
   linkedin = faLinkedinIn;
   email = faEnvelope
@@ -17,11 +18,11 @@ export class HomeComponent implements  OnInit {
   leyends: string[] = ['Mathematician', 'Computer scientist', 'Software Developer'];
   currentLeyend: string = '';
   currentIndex: number = 0;
-  typingSpeed: number = 100; 
-  eraseSpeed: number = 50; 
-  delayAfterTyping: number = 1000; 
+  typingSpeed: number = 100;
+  eraseSpeed: number = 50;
+  delayAfterTyping: number = 1000;
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.startTypingEffect();
@@ -60,20 +61,4 @@ export class HomeComponent implements  OnInit {
       }, this.typingSpeed);
     }
   }
-
-  onKnowMeClick() {
-    const allContentElement = document.getElementById('all-content');
-    const homeElement = document.getElementById('home');
-    if (allContentElement) {
-      console.log(allContentElement)
-      this.renderer.addClass(allContentElement, 'show-content');
-
-      allContentElement.addEventListener('transitionend', () => {
-        homeElement?.style.setProperty('display', 'none');
-      });
-  
-      allContentElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-  
 }

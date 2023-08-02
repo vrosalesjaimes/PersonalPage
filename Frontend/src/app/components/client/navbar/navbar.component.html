@@ -5,7 +5,7 @@
     </div>
     <nav class="nav-bar"  [ngClass]="{'active': isNavbarActive}">
         <ul>
-            <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+            <li><a routerLink="/" [ngClass]="{'active': isRouteActive('/')}">Home</a></li>
             <li><a routerLink="/articles" routerLinkActive="active">Articles</a></li>
             <li><a routerLink="/certifications" routerLinkActive="active">Certifications</a></li>
             <li><a routerLink="/formation" routerLinkActive="active">Formation</a></li>

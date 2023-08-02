@@ -1,4 +1,5 @@
-import { Component, HostBinding, Inject } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
