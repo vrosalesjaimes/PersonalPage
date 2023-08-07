@@ -25,6 +25,7 @@ import { PortfolioComponent } from './components/client/portfolio/portfolio.comp
 import { PostComponent } from './components/client/post/post.component';
 import { ScholarProjectsComponent } from './components/client/scholar-projects/scholar-projects.component';
 import { WorkExperiencesComponent } from './components/client/work-experiences/work-experiences.component';
+import { ToggleThemeComponent } from './components/toggle-theme/toggle-theme.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { WorkExperiencesComponent } from './components/client/work-experiences/w
     PostComponent,
     ScholarProjectsComponent,
     WorkExperiencesComponent,
+    ToggleThemeComponent,
   ],
   imports: [
     BrowserModule,
